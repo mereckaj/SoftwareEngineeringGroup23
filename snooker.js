@@ -73,16 +73,29 @@ function main() {
 addEventListener('load', function(){ try { main() } catch(e) { alert(e.msg); } }, false);
 
 function takeShot(ev) {
-	var deg = getNumber('Angle? (degrees, 0 is north)');
+	// var deg = getNumber('Angle? (degrees, 0 is north)');
+	var userInput;
+	var deg 
 	var power;
-
-	if(deg === null)
-		return;
-
-	power = getNumber('Power? (1-10)');
+	
+	while(true){
+		deg = getNumber("Enter an angle for: (0 - 360)");
+		if(!isNaN(deg) && deg != null){
+			if(deg < 0){
+				deg = 360 - Math.abs(deg);
+				if(deg < 360){
+					deg = deg % 360;
+				}
+			}else{
+				deg = (deg % 360);
+			}
+			break;
+		}
+	}
 
 	while(true)
 	{
+		power = getNumber('Power? (1-10)');
 		if(power === null)
 			return;
 		if(power < 1)
@@ -91,8 +104,6 @@ function takeShot(ev) {
 			alert("That's too big!");
 		else
 			break;
-
-		power = getNumber('Power? (1-10)');
 	}
 
 	tries += 1;
