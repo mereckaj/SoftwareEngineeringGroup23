@@ -1,232 +1,192 @@
 <!DOCTYPE html>
 <html manifest="iphone_snooker_cache.appcache">
-<head>
-<meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1"/>
-<meta name="apple-mobile-web-app-capable" content="yes" />
-<meta name="apple-mobile-web-app-status-bar-style" content="black" />
-<link rel="apple-touch-icon" href="iphone_snooker_icon.png"/>
-<link rel="apple-touch-startup-image" href="iphone_snooker_startup.png" />
-<link rel="stylesheet" href="iphone_snooker_styles.css" type="text/css" media="screen, mobile" title="main" charset="utf-8" />
-<title>Snooker angles</title>
-</head>
-
-<body>
-
-<div id="appScreenArea">
-
-<div class="appPage" id="splash">
-<img src="iphone_snooker_splash.png">
-</div>
-
-<div class="appPage" id="play">
-<h1>Play</h1>
-<svg id="snookerTable" xmlns="http://www.w3.org/2000/svg" width="187.2" height="331.2" >
-<g transform = "scale (0.6 0.6) rotate(-90) translate(-544 0)" >
-<rect class="border" x="20" y="20" width="512" height="272" rx="4" ry="4" />
-<rect id="board" x="36" y="36" width="480" height="240" />
-<line class="marking" x1="135" x2="135" y1="36" y2="276" />
-<path class="marking" d="M135,116 a40,40 0,0 0.0,80" />
-<circle class="markingdot" r="1" cx="276" cy="156" />
-<circle class="markingdot" r="1" cx="396" cy="156" />
-<circle class="markingdot" r="1" cx="472" cy="156" />
-<circle class="pocket" r="8" cx="38" cy="38" />
-<circle class="pocket" r="8" cx="38" cy="274" />
-<circle class="pocket" r="8" cx="276" cy="38" />
-<circle class="pocket" r="8" cx="276" cy="274" />
-<circle class="pocket" r="8" cx="514" cy="38" />
-<circle class="pocket" r="8" cx="514" cy="274" />
-<circle id="ball" r="5" cx="156" cy="156" />
-</g>
-</svg>
-
-<div id="value_entry">
-
-<form id="angle_value">
-<p>Angle: <input type="text" id="angle_text" value="0" size="3" readonly="readonly" class="numeric")>&deg;</p>
-<div id="keypad">
-<div id="row1">
-<input type="button" name="digit" value="1" id="_1" class="numeric_key">
-<input type="button" name="digit" value="2" id="_2" class="numeric_key">
-<input type="button" name="digit" value="3" id="_3" class="numeric_key">
-</div>
-<div id="row2">
-<input type="button" name="digit" value="4" id="_4" class="numeric_key">
-<input type="button" name="digit" value="5" id="_5" class="numeric_key">
-<input type="button" name="digit" value="6" id="_6" class="numeric_key">
-</div>
-<div id="row3">
-<input type="button" name="digit" value="7" id="_7" class="numeric_key">
-<input type="button" name="digit" value="8" id="_8" class="numeric_key">
-<input type="button" name="digit" value="9" id="_9" class="numeric_key">
-</div>
-<div id="row4">
-<input type="button" name="digit" value="0" id="_0" class="numeric_key">
-<input type="button" name="delete" value="del" id="_del" class="delete_key">
-</div>
-</div>
-</form>
-
-<p>&nbsp;</p>
-
-<form id="power_value">
-<p>Power</p>
-<input type="range" id="power_range" min="1" max="20" step="1">
-<output for="power" onforminput="value = power.valueAsNumber;"></output>
-</form>
-
-<form id="shot_button">
-<button type="button" id="takeShot" disabled="disabled">Take a shot!</button>
-</form>
-
-</div>
-
-</div>
-
-
-<div class="appPage" id="learn">
-<h1>Learn</h1>
-<p>To get the ball in the pocket, you must imagine the angle it would take. By playing, you find out which number makes which angle. This should help you know your angles!</p>
-
-<!-- bearings explanation diagram -->
-<svg id="angleDiagram" xmlns="http://www.w3.org/2000/svg" width="180" height="180">
-<path class="constructionLine" id="vertical" d="m 90,35 0,110" />
-<path class="constructionLine" id="horizontal" d="m 38,90 110,0" />
-<text class="diagramText"x="90"  y="16" >North</text>
-<text class="diagramText"x="90"  y="28" >0&deg;</text>
-<text class="diagramText"x="165"  y="88" >East</text>
-<text class="diagramText"x="165"  y="100" >90&deg;</text>
-<text class="diagramText"x="90"  y="161" >South</text>
-<text class="diagramText"x="90"  y="173" >180&deg;</text>
-<text class="diagramText"x="20"  y="88" >West</text>
-<text class="diagramText"x="20"  y="100" >270&deg;</text>
-<text class="diagramText"x="140"  y="60" >60&deg;</text>
-<path class="vectorLine" id="direction" d="m 90,90 80,-40 -2,4 -2,-4 6,0" />
-<path class="constructionLine" id="turn" d="m 90,45 c 0,0 25,0 40,25" />
-</svg>
-
-<p>The numbers are:</p>
-<ul>
-<li>0&deg; for straight up (North),</li>
-<li>90&deg; for right (East),</li>
-<li>180&deg; for down (South) and</li>
-<li>270&deg; for left (West).</li>
-</ul>
-<p>This way of measuring angles is called bearings and is used by orienteers, ships and planes to find their way.</p>
-</div>
-
-<div class="appPage" id="about">
-<h1>About</h1>
-<p>This program was first written in 1979 by a maths teacher, Richard Millwood, for one of the first computers used in schools, the Research Machines 380Z.</p>
-<img class="illustration" src="rm380z_computer.jpg">
-<p>It later became part of the SMILE suite of programs used in schools to learn about angles ('Flip' to see how the older version worked).</p>
-<p>Play with it to learn about the numbers used for angles.</p>
-<p>This 2012 version can also be used to investigate the physics of friction and restitution.</p>
-<p>Read more at the: <br /> <a href="http://www.naec.org.uk/artefacts/software/micro-smile/snooker">National Archive of Educational Computing</a>.</p>
-</div>
-
-
-<div class="appPage" id="settings">
-<h1>Settings</h1>
-<p>Friction and Restitution are the key variables affecting the ball's movement.</p>
-<p><strong>Friction</strong> is the force resisting the ball's movement on the table. With Friction set to 1.00, the ball will never stop unless it is pocketed.</p>
-<p><strong>Restitution</strong> is the energy absorbed by the cushions. With restitution set to 1.00, no energy is lost in hitting the cushion - it is an elastic collosion.</p>
-<p>Experiment with different values:</p>
-
-<form class="setting" >
-<p>Friction: <input type="text" id="friction_text" value="0" size="3" readonly="readonly" class="numeric")>&nbsp;&nbsp;0.90<input type="range" name="friction_range" id="friction_range" min="0.9" max="1.0" step="0.01" value="0.98" width="4em" onchange="setFrictionValueFromRange();">1.00</p>
-</form>
-
-<form class="setting" >
-<p>Restitution: <input type="text" id="restitution_text" value="0" size="3" readonly="readonly" class="numeric")>&nbsp;&nbsp;0.50<input type="range" name="restitution_range" id="restitution_range" min="0.5" max="1.0" step="0.01" value="0.90" width="4em" onchange="setRestitutionValueFromRange();">1.00</p>
-</form>
-
-<p>For further reference from Wikipedia:</p>
-<p><a href="http://en.wikipedia.org/wiki/Friction">Friction</a> <a href="http://en.wikipedia.org/wiki/Coefficient_of_restitution">Restitution</a></p>
-</div> 
-
-
-<div class="appPage" id="flip">
-<h1>Flip</h1>
-
-<svg id="flipSnookerTable" xmlns="http://www.w3.org/2000/svg" width="320" height="288" >
-
-<!-- Old monitor area -->
-<rect class="flipTv" x="6" y="6" width="308" height="276" rx="8" ry="8" />
-
-
-<g transform = "scale (3.6 3.6) translate (4.5 3.5)" >
-<!-- Graphics area 40x20 characters composed of 2x3 blocks to make an 80x60 area! -->
-<rect id="flipBoard" x="0" y="0" width="80" height="60" />
-
-<!-- ScrollingText area 40x4 characters for entering text and printing messages -->
-<rect class="flipScrollText" x="0" y="60" width="80" height="12" />
-
-<!-- Left end cushions-->
-<rect class="flipBorder" x="0" y="1" width="1" height="2" />
-<rect class="flipBorder" x="1" y="3" width="1" height="54" />
-<rect class="flipBorder" x="0" y="57" width="1" height="2" />
-
-<!-- Top side cushions-->
-<rect class="flipBorder" x="0" y="0" width="3" height="1" />
-<rect class="flipBorder" x="3" y="1" width="36" height="1" />
-<rect class="flipBorder" x="38" y="0" width="4" height="1" />
-<rect class="flipBorder" x="41" y="1" width="36" height="1" />
-<rect class="flipBorder" x="77" y="0" width="3" height="1" />
-
-<!-- Left end cushions-->
-<rect class="flipBorder" x="79" y="1" width="1" height="2" />
-<rect class="flipBorder" x="78" y="3" width="1" height="54" />
-<rect class="flipBorder" x="79" y="57" width="1" height="2" />
-
-<!-- Top side cushions-->
-<rect class="flipBorder" x="0" y="59" width="3" height="1" />
-<rect class="flipBorder" x="3" y="58" width="36" height="1" />
-<rect class="flipBorder" x="38" y="59" width="4" height="1" />
-<rect class="flipBorder" x="41" y="58" width="36" height="1" />
-<rect class="flipBorder" x="77" y="59" width="3" height="1" />
-
-<!-- Pockets -->
-<rect class="flipPocket"x="1" y="1" width="2" height="2" />
-<rect class="flipPocket" x="39" y="1" width="2" height="2" />
-<rect class="flipPocket" x="77" y="1" width="2" height="2" />
-<rect class="flipPocket" x="1" y="57" width="2" height="2" />
-<rect class="flipPocket" x="39" y="57" width="2" height="2" />
-<rect class="flipPocket" x="77" y="57" width="2" height="2" />
-
-<!-- Ball -->
-<rect id="flipBall" x="20" y="20" width="1" height="1" />
-</g>
-</svg>
-<button type="button" class="flipTakeShot" disabled="disabled">Take a shot!</button>
-</div>
-
-<div class="appPage" id="code">
-<h1>Code</h1>
-<p>Snooker was first developed using BASIC (Beginners All-purpose Symbolic Instruction Code) which was a common programming language for early microcomputers.</p>
-<p>The BASIC can be found on the <a href="http://richardmillwood.net/snooker/Quite-BASIC-Snooker.html">QuiteBASIC website</a>.</p>
-<p>This version is created using:</p>
- <ul>
- <li><strong>HTML</strong> - HyperText Mark-up Language - used to arrange the words and diagrams</li>
- <li><strong>SVG</strong> - Scalable Vector Graphics - used to draw the snooker table, ball and diagrams</li>
- <li><strong>CSS</strong> - Cascading Style Sheets - used to set the style and colours and</li>
- <li><strong>Javascript</strong> - used to program the snooker ball, set values and navigate between pages</li>
- </ul>
-<p>The code can be found on the <a href="https://github.com/rmillwood/snooker/tree/master/angles">GitHub website</a>.</p>
-</div>
-
-<div id="navigation">
-<button type="button" id="play" onclick="navigateToAppPage('play')">Play</button>
-<button type="button" id="learn"onclick="navigateToAppPage('learn')">Learn</button>
-<button type="button" id="about" onclick="navigateToAppPage('about')"">About</button>
-<button type="button" id="settings" onclick="navigateToAppPage('settings')">Settings</button>
-<button type="button" id="flip"onclick="navigateToAppPage('flip')">Flip</button>
-<button type="button" id="code"onclick="navigateToAppPage('code')">Code</button>
-</div>
-
-
-<script type="text/javascript" src="iphone_snooker_code.js"></script>
-
-</div>
-
-</body>
+  <head>
+    <meta name="viewport" content="user-scalable=no, width=device-width, initial-scale=1.0, maximum-scale=1"/>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <link rel="apple-touch-icon" href="iphone_snooker_icon.png"/>
+    <link rel="apple-touch-startup-image" href="iphone_snooker_startup.png" />
+    <link rel="stylesheet" href="iphone_snooker_styles.css" type="text/css" media="screen, mobile" title="main" charset="utf-8" />
+    <title>Snooker angles</title>
+  </head>
+  <body>
+    <div id="appScreenArea">
+      <div class="appPage" id="splash">
+        <img src="iphone_snooker_splash.png">
+      </div>
+      <div class="appPage" id="play">
+        <h1>Play</h1>
+        <svg id="snookerTable" xmlns="http://www.w3.org/2000/svg" width="187.2" height="331.2" >
+          <g transform = "scale (0.6 0.6) rotate(-90) translate(-544 0)" >
+            <rect class="border" x="20" y="20" width="512" height="272" rx="4" ry="4" />
+            <rect id="board" x="36" y="36" width="480" height="240" />
+            <line class="marking" x1="135" x2="135" y1="36" y2="276" />
+            <path class="marking" d="M135,116 a40,40 0,0 0.0,80" />
+            <circle class="markingdot" r="1" cx="276" cy="156" />
+            <circle class="markingdot" r="1" cx="396" cy="156" />
+            <circle class="markingdot" r="1" cx="472" cy="156" />
+            <circle class="pocket" r="8" cx="38" cy="38" />
+            <circle class="pocket" r="8" cx="38" cy="274" />
+            <circle class="pocket" r="8" cx="276" cy="38" />
+            <circle class="pocket" r="8" cx="276" cy="274" />
+            <circle class="pocket" r="8" cx="514" cy="38" />
+            <circle class="pocket" r="8" cx="514" cy="274" />
+            <circle id="ball" r="5" cx="156" cy="156" />
+          </g>
+        </svg>
+        <div id="value_entry">
+          <form id="angle_value">
+            <p>Angle: <input type="text" id="angle_text" value="0" size="3" readonly="readonly" class="numeric")>&deg;</p>
+            <div id="keypad">
+              <div id="row1">
+                <input type="button" name="digit" value="1" id="_1" class="numeric_key">
+                <input type="button" name="digit" value="2" id="_2" class="numeric_key">
+                <input type="button" name="digit" value="3" id="_3" class="numeric_key">
+              </div>
+              <div id="row2">
+                <input type="button" name="digit" value="4" id="_4" class="numeric_key">
+                <input type="button" name="digit" value="5" id="_5" class="numeric_key">
+                <input type="button" name="digit" value="6" id="_6" class="numeric_key">
+              </div>
+              <div id="row3">
+                <input type="button" name="digit" value="7" id="_7" class="numeric_key">
+                <input type="button" name="digit" value="8" id="_8" class="numeric_key">
+                <input type="button" name="digit" value="9" id="_9" class="numeric_key">
+              </div>
+              <div id="row4">
+                <input type="button" name="digit" value="0" id="_0" class="numeric_key">
+                <input type="button" name="delete" value="del" id="_del" class="delete_key">
+              </div>
+            </div>
+          </form>
+          <p>&nbsp;</p>
+          <form id="power_value">
+            <p>Power</p>
+            <input type="range" id="power_range" min="1" max="20" step="1">
+            <output for="power" onforminput="value = power.valueAsNumber;"></output>
+          </form>
+          <form id="shot_button">
+            <button type="button" id="takeShot" disabled="disabled">Take a shot!</button>
+          </form>
+        </div>
+      </div>
+      <div class="appPage" id="learn">
+        <h1>Learn</h1>
+        <p>To get the ball in the pocket, you must imagine the angle it would take. By playing, you find out which number makes which angle. This should help you know your angles!</p>
+        <!-- bearings explanation diagram -->
+        <svg id="angleDiagram" xmlns="http://www.w3.org/2000/svg" width="180" height="180">
+          <path class="constructionLine" id="vertical" d="m 90,35 0,110" />
+          <path class="constructionLine" id="horizontal" d="m 38,90 110,0" />
+          <text class="diagramText"x="90"  y="16" >North</text>
+          <text class="diagramText"x="90"  y="28" >0&deg;</text>
+          <text class="diagramText"x="165"  y="88" >East</text>
+          <text class="diagramText"x="165"  y="100" >90&deg;</text>
+          <text class="diagramText"x="90"  y="161" >South</text>
+          <text class="diagramText"x="90"  y="173" >180&deg;</text>
+          <text class="diagramText"x="20"  y="88" >West</text>
+          <text class="diagramText"x="20"  y="100" >270&deg;</text>
+          <text class="diagramText"x="140"  y="60" >60&deg;</text>
+          <path class="vectorLine" id="direction" d="m 90,90 80,-40 -2,4 -2,-4 6,0" />
+          <path class="constructionLine" id="turn" d="m 90,45 c 0,0 25,0 40,25" />
+        </svg>
+        <p>The numbers are:</p>
+        <ul>
+          <li>0&deg; for straight up (North),</li>
+          <li>90&deg; for right (East),</li>
+          <li>180&deg; for down (South) and</li>
+          <li>270&deg; for left (West).</li>
+        </ul>
+        <p>This way of measuring angles is called bearings and is used by orienteers, ships and planes to find their way.</p>
+      </div>
+      <div class="appPage" id="about">
+        <h1>About</h1>
+        <p>This program was first written in 1979 by a maths teacher, Richard Millwood, for one of the first computers used in schools, the Research Machines 380Z.</p>
+        <img class="illustration" src="rm380z_computer.jpg">
+        <p>It later became part of the SMILE suite of programs used in schools to learn about angles ('Flip' to see how the older version worked).</p>
+        <p>Play with it to learn about the numbers used for angles.</p>
+        <p>This 2012 version can also be used to investigate the physics of friction and restitution.</p>
+        <p>Read more at the: <br /> <a href="http://www.naec.org.uk/artefacts/software/micro-smile/snooker">National Archive of Educational Computing</a>.</p>
+      </div>
+      <div class="appPage" id="settings">
+        <h1>Settings</h1>
+        <p>Friction and Restitution are the key variables affecting the ball's movement.</p>
+        <p><strong>Friction</strong> is the force resisting the ball's movement on the table. With Friction set to 1.00, the ball will never stop unless it is pocketed.</p>
+        <p><strong>Restitution</strong> is the energy absorbed by the cushions. With restitution set to 1.00, no energy is lost in hitting the cushion - it is an elastic collosion.</p>
+        <p>Experiment with different values:</p>
+        <form class="setting" >
+          <p>Friction: <input type="text" id="friction_text" value="0" size="3" readonly="readonly" class="numeric")>&nbsp;&nbsp;0.90<input type="range" name="friction_range" id="friction_range" min="0.9" max="1.0" step="0.01" value="0.98" width="4em" onchange="setFrictionValueFromRange();">1.00</p>
+        </form>
+        <form class="setting" >
+          <p>Restitution: <input type="text" id="restitution_text" value="0" size="3" readonly="readonly" class="numeric")>&nbsp;&nbsp;0.50<input type="range" name="restitution_range" id="restitution_range" min="0.5" max="1.0" step="0.01" value="0.90" width="4em" onchange="setRestitutionValueFromRange();">1.00</p>
+        </form>
+        <p>For further reference from Wikipedia:</p>
+        <p><a href="http://en.wikipedia.org/wiki/Friction">Friction</a> <a href="http://en.wikipedia.org/wiki/Coefficient_of_restitution">Restitution</a></p>
+      </div>
+      <div class="appPage" id="flip">
+        <h1>Flip</h1>
+        <svg id="flipSnookerTable" xmlns="http://www.w3.org/2000/svg" width="320" height="288" >
+          <!-- Old monitor area -->
+          <rect class="flipTv" x="6" y="6" width="308" height="276" rx="8" ry="8" />
+          <g transform = "scale (3.6 3.6) translate (4.5 3.5)" >
+            <!-- Graphics area 40x20 characters composed of 2x3 blocks to make an 80x60 area! -->
+            <rect id="flipBoard" x="0" y="0" width="80" height="60" />
+            <!-- ScrollingText area 40x4 characters for entering text and printing messages -->
+            <rect class="flipScrollText" x="0" y="60" width="80" height="12" />
+            <!-- Left end cushions-->
+            <rect class="flipBorder" x="0" y="1" width="1" height="2" />
+            <rect class="flipBorder" x="1" y="3" width="1" height="54" />
+            <rect class="flipBorder" x="0" y="57" width="1" height="2" />
+            <!-- Top side cushions-->
+            <rect class="flipBorder" x="0" y="0" width="3" height="1" />
+            <rect class="flipBorder" x="3" y="1" width="36" height="1" />
+            <rect class="flipBorder" x="38" y="0" width="4" height="1" />
+            <rect class="flipBorder" x="41" y="1" width="36" height="1" />
+            <rect class="flipBorder" x="77" y="0" width="3" height="1" />
+            <!-- Left end cushions-->
+            <rect class="flipBorder" x="79" y="1" width="1" height="2" />
+            <rect class="flipBorder" x="78" y="3" width="1" height="54" />
+            <rect class="flipBorder" x="79" y="57" width="1" height="2" />
+            <!-- Top side cushions-->
+            <rect class="flipBorder" x="0" y="59" width="3" height="1" />
+            <rect class="flipBorder" x="3" y="58" width="36" height="1" />
+            <rect class="flipBorder" x="38" y="59" width="4" height="1" />
+            <rect class="flipBorder" x="41" y="58" width="36" height="1" />
+            <rect class="flipBorder" x="77" y="59" width="3" height="1" />
+            <!-- Pockets -->
+            <rect class="flipPocket"x="1" y="1" width="2" height="2" />
+            <rect class="flipPocket" x="39" y="1" width="2" height="2" />
+            <rect class="flipPocket" x="77" y="1" width="2" height="2" />
+            <rect class="flipPocket" x="1" y="57" width="2" height="2" />
+            <rect class="flipPocket" x="39" y="57" width="2" height="2" />
+            <rect class="flipPocket" x="77" y="57" width="2" height="2" />
+            <!-- Ball -->
+            <rect id="flipBall" x="20" y="20" width="1" height="1" />
+          </g>
+        </svg>
+        <button type="button" class="flipTakeShot" disabled="disabled">Take a shot!</button>
+      </div>
+      <div class="appPage" id="code">
+        <h1>Code</h1>
+        <p>Snooker was first developed using BASIC (Beginners All-purpose Symbolic Instruction Code) which was a common programming language for early microcomputers.</p>
+        <p>The BASIC can be found on the <a href="http://richardmillwood.net/snooker/Quite-BASIC-Snooker.html">QuiteBASIC website</a>.</p>
+        <p>This version is created using:</p>
+        <ul>
+          <li><strong>HTML</strong> - HyperText Mark-up Language - used to arrange the words and diagrams</li>
+          <li><strong>SVG</strong> - Scalable Vector Graphics - used to draw the snooker table, ball and diagrams</li>
+          <li><strong>CSS</strong> - Cascading Style Sheets - used to set the style and colours and</li>
+          <li><strong>Javascript</strong> - used to program the snooker ball, set values and navigate between pages</li>
+        </ul>
+        <p>The code can be found on the <a href="https://github.com/rmillwood/snooker/tree/master/angles">GitHub website</a>.</p>
+      </div>
+      <div id="navigation">
+        <button type="button" id="play" onclick="navigateToAppPage('play')">Play</button>
+        <button type="button" id="learn"onclick="navigateToAppPage('learn')">Learn</button>
+        <button type="button" id="about" onclick="navigateToAppPage('about')"">About</button>
+        <button type="button" id="settings" onclick="navigateToAppPage('settings')">Settings</button>
+        <button type="button" id="flip"onclick="navigateToAppPage('flip')">Flip</button>
+        <button type="button" id="code"onclick="navigateToAppPage('code')">Code</button>
+      </div>
+      <script type="text/javascript" src="iphone_snooker_code.js"></script>
+    </div>
+  </body>
 </html>
