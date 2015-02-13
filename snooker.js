@@ -77,7 +77,6 @@ function takeShot(ev) {
 	var userInput;
 	var deg 
 	var power;
-	
 	while(true){
 		deg = getNumber("Enter an angle for: (0 - 360)");
 		if(!isNaN(deg) && deg != null){
@@ -90,6 +89,8 @@ function takeShot(ev) {
 				deg = (deg % 360);
 			}
 			break;
+		}else{
+			return;
 		}
 	}
 
