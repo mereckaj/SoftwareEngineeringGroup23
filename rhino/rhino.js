@@ -24,17 +24,17 @@ function Rhino(){
     yPos = Math.floor(Math.random() * (gridSizeY));
   };
 
-  rhino.checkPos = function(xGuess, yGuess){
+  rhino.checkPos = function(xGuess, yGuess){  //compares the co-ordinates of user guess with those of rhino
     if(xGuess === xPos && yGuess === yPos){
       found = true;
     }
   };
 
-  rhino.isFound = function(){
+  rhino.isFound = function(){ //checks if the rhino has been found
     return found;
   };
 
-  rhino.getDistFromGuess = function(xGuess, yGuess){
+  rhino.getDistFromGuess = function(xGuess, yGuess){ //returns the number of blocks the rhino is from the guess
     var blocks = 0;
 
     return ("The Rhino is " + blocks + " blocks away");
@@ -112,7 +112,7 @@ function getNumber(text){     //Converts the String that the user enters into an
   return res;
 };
 
-function markDot(iX, iY){
+function markDot(iX, iY){ //test function, not working yet
   var offset = (gridSizeX * iY) + iX;
   realDots[offset].setAttribute("fill", "green");
 };
