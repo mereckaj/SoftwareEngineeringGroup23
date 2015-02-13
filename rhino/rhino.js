@@ -4,15 +4,14 @@ var rhino;
 var grid;
 var realDots;
 
-/**
-  * Rhino Object
-  *
-  */
+/*****************************************
+  *             Rhino Object             *
+  *                                      *
+  ****************************************/
 function Rhino(){
   var rhino = this;
   var xPos = Math.floor(Math.random() * (gridSizeX));  //generate a random X position for the rhino in the 2D array
   var yPos = Math.floor(Math.random() * (gridSizeY));  //generate a random Y position for the rhino in the 2D array
-  var found = false;
 
   rhino.sayPos = function(){    //alerts user with the co ordinates of the rhino;
     alert(xPos);
@@ -26,20 +25,27 @@ function Rhino(){
 
   rhino.checkPos = function(xGuess, yGuess){  //compares the co-ordinates of user guess with those of rhino
     if(xGuess === xPos && yGuess === yPos){
-      found = true;
+      return true;
     }
-  };
-
-  rhino.isFound = function(){ //checks if the rhino has been found
-    return found;
+    else return false;
   };
 
   rhino.getDistFromGuess = function(xGuess, yGuess){ //returns the number of blocks the rhino is from the guess
     var blocks = 0;
+    if(yGuess >= yPos){
+      blocks = blocks + (yGuess - yPos);
+    }
+    else blocks = blocks + (yPos - yGuess);
 
+    if(xGuess >= xPos){
+      blocks = blocks + (xGuess - xPos);
+    }
+    else blocks = blocks + (xPos - xGuess);
     return ("The Rhino is " + blocks + " blocks away");
   };
 };
+/***************************************************************/
+
 
 function City(){
   var city = this;
@@ -51,14 +57,15 @@ function City(){
 
 
 var main = function(){
+  alert("script is running!");
   rhino = new Rhino();
+  rhino.sayPos();
   grid = new City();
 
   var guessButton = document.getElementById('makeGuess');     //gets the button by ID *allows us to check if the button is pressed*
   guessButton.addEventListener('click', makeGuess, false);    //when the button is pressed the makeGuess() function is called
   guessButton.disabled = false;
 
-  realDots = document.getElementByClassName('dot');
 
 }
 
@@ -91,13 +98,11 @@ function makeGuess(){
     }
   }
 
-  rhino.checkPos(xCoord, yCoord);
-  if(rhino.isFound === true){
+  if(rhino.checkPos(xCoord, yCoord) === true){
     alert("You have found the Rhino");
   }
   else{
     alert(rhino.getDistFromGuess(xCoord, yCoord));
-    markDot(xCoord, yCoord);
   }
 }
 
@@ -108,13 +113,13 @@ function getNumber(text){     //Converts the String that the user enters into an
     alert("Please enter a valid number!");
     res = prompt(text);
   }
-
-  return res;
+  var intRes = parseInt(res);
+  return intRes;
 };
 
-function markDot(iX, iY){ //test function, not working yet
+/**function markDot(iX, iY){ //test function, not working yet
   var offset = (gridSizeX * iY) + iX;
   realDots[offset].setAttribute("fill", "green");
-};
+};*/
 
 $(document).ready(main);
