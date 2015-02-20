@@ -23,41 +23,43 @@
       <div class="panel-body">
         <div class="game">
           <div class="container" align="center">
-            <svg xmlns="http://www.w3.org/2000/svg" width="420.0" height="420.0">
-              <circle class="dot" r="4.0" cx="10" cy="10" />
-              <circle class="dot" r="4.0" cx="110" cy="10" />
-              <circle class="dot" r="4.0" cx="210" cy="10" />
-              <circle class="dot" r="4.0" cx="310" cy="10" />
-              <circle class="dot" r="4.0" cx="410" cy="10" />
+            <svg id="svg_gird" xmlns="http://www.w3.org/2000/svg" width="420.0" height="420.0">
+              <circle id="00" class="dot" r="4.0" cx="10" cy="10" fill="black"/>
+              <circle id="10" class="dot" r="4.0" cx="110" cy="10" />
+              <circle id="20" class="dot" r="4.0" cx="210" cy="10" />
+              <circle id="30" class="dot" r="4.0" cx="310" cy="10" />
+              <circle id="40" class="dot" r="4.0" cx="410" cy="10" />
 
-              <circle class="dot" r="4.0" cx="10" cy="110" />
-              <circle class="dot" r="4.0" cx="110" cy="110" />
-              <circle class="dot" r="4.0" cx="210" cy="110" />
-              <circle class="dot" r="4.0" cx="310" cy="110" />
-              <circle class="dot" r="4.0" cx="410" cy="110" />
+              <circle id="01" class="dot" r="4.0" cx="10" cy="110" />
+              <circle id="11" class="dot" r="4.0" cx="110" cy="110" />
+              <circle id="21" class="dot" r="4.0" cx="210" cy="110" />
+              <circle id="31" class="dot" r="4.0" cx="310" cy="110" />
+              <circle id="41" class="dot" r="4.0" cx="410" cy="110" />
 
-              <circle class="dot" r="4.0" cx="10" cy="210" />
-              <circle class="dot" r="4.0" cx="110" cy="210" />
-              <circle class="dot" r="4.0" cx="210" cy="210" />
-              <circle class="dot" r="4.0" cx="310" cy="210" />
-              <circle class="dot" r="4.0" cx="410" cy="210" />
+              <circle id="02" class="dot" r="4.0" cx="10" cy="210" />
+              <circle id="12" class="dot" r="4.0" cx="110" cy="210" />
+              <circle id="22" class="dot" r="4.0" cx="210" cy="210" />
+              <circle id="32" class="dot" r="4.0" cx="310" cy="210" />
+              <circle id="42" class="dot" r="4.0" cx="410" cy="210" />
 
-              <circle class="dot" r="4.0" cx="10" cy="310" />
-              <circle class="dot" r="4.0" cx="110" cy="310" />
-              <circle class="dot" r="4.0" cx="210" cy="310" />
-              <circle class="dot" r="4.0" cx="310" cy="310" />
-              <circle class="dot" r="4.0" cx="410" cy="310" />
+              <circle id="03" class="dot" r="4.0" cx="10" cy="310" />
+              <circle id="13" class="dot" r="4.0" cx="110" cy="310" />
+              <circle id="23" class="dot" r="4.0" cx="210" cy="310" />
+              <circle id="33" class="dot" r="4.0" cx="310" cy="310" />
+              <circle id="43" class="dot" r="4.0" cx="410" cy="310" />
 
-              <circle class="dot" r="4.0" cx="10" cy="410" />
-              <circle class="dot" r="4.0" cx="110" cy="410" />
-              <circle class="dot" r="4.0" cx="210" cy="410" />
-              <circle class="dot" r="4.0" cx="310" cy="410" />
-              <circle class="dot" r="4.0" cx="410" cy="410" />
+              <circle id="04" class="dot" r="4.0" cx="10" cy="410" />
+              <circle id="14" class="dot" r="4.0" cx="110" cy="410" />
+              <circle id="24" class="dot" r="4.0" cx="210" cy="410" />
+              <circle id="34" class="dot" r="4.0" cx="310" cy="410" />
+              <circle id="44" class="dot" r="4.0" cx="410" cy="410" />
 
             </svg>
           </div>
           <div class="container" align="center">
-            <button type="button" id="makeGuess" disabled="disabled">Enter the co-ordinates!</button>
+            <p>X <input type="number" id="x_val"/></p>
+            <p>Y <input type="number" id="y_val" /></p>
+            <button type="button" id="makeGuess" disabled="disabled">Guess</button>
           </div>
         </div>
       </div>
