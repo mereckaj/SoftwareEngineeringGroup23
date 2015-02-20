@@ -19,17 +19,13 @@ function Rhino(){
   var xPos = Math.floor(Math.random() * (gridSizeX));  //generate a random X position for the rhino in the 2D array
   var yPos = Math.floor(Math.random() * (gridSizeY));  //generate a random Y position for the rhino in the 2D array
 
-  rhino.sayPos = function(){    //alerts user with the co ordinates of the rhino;
-    alert(xPos+" " + yPos);
-  };
-
   rhino.move = function(){    //moves the rhino to new co-ordinates
     xPos = Math.floor(Math.random() * (gridSizeX));
     yPos = Math.floor(Math.random() * (gridSizeY));
   };
 
   rhino.checkPos = function(xGuess, yGuess){  //compares the co-ordinates of user guess with those of rhino
-    if(xGuess === xPos && yGuess === yPos){
+    if(xGuess == xPos && yGuess == yPos){
       return true;
     }
     else return false;
@@ -63,12 +59,13 @@ function City(){
 
 var main = function(){
   rhino = new Rhino();
-  // rhino.sayPos();
   grid = new City();
 
   var guessButton = document.getElementById('makeGuess');     //gets the button by ID *allows us to check if the button is pressed*
   guessButton.addEventListener('click', makeGuess, false);    //when the button is pressed the makeGuess() function is called
   guessButton.disabled = false;
+
+  // Enter/Return key listener. Will make a guess at the selected coordinates if the user hits enter
   window.onkeydown = function (e) {
     var code = e.keyCode ? e.keyCode : e.which;
     if (code === 13 ) { //up key
@@ -79,13 +76,17 @@ var main = function(){
 
 function makeGuess(){
   var userInput;
+  //Preserve last x and y coordinates, used to change the colour of the dot back to black
   lastx = xCoord;
   lasty = yCoord;
+  // Get new x and y coordinates from the input boxes
   xCoord =  document.getElementById('x_val').value;
   yCoord =  document.getElementById('y_val').value;
   //Set colour of last guess
   $svg = $("#svg_gird");
+  //Set the current guess' colour to "lastGuessColour"
   $("#"+xCoord+""+yCoord, $svg).attr('style', "fill:"+lastGuessColour);
+  //Set the previous guess' colour to black
   $("#"+lastx+""+lasty, $svg).attr('style', "fill:"+normalColour);
 
   // while(true){
