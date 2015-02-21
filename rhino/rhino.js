@@ -87,31 +87,8 @@ function makeGuess(){
   //Set the current guess' colour to "lastGuessColour"
   $("#"+xCoord+""+yCoord, $svg).attr('style', "fill:"+lastGuessColour);
   //Set the previous guess' colour to black
-  $("#"+lastx+""+lasty, $svg).attr('style', "fill:"+normalColour);
+  //$("#"+lastx+""+lasty, $svg).attr('style', "fill:"+normalColour);
 
-  // while(true){
-  //   xCoord = getNumber("Enter an x co-ordinate!");
-  //   if(!isNaN(xCoord) && xCoord != null){
-  //     if(xCoord < 0){
-  //       alert("x co-ordinate is out of range! range:0-" + (gridSizeX-1));
-  //     }else if(xCoord > gridSizeX-1){
-  //       alert("x co-ordinate is out of range! range:0-" + (gridSizeX-1));
-  //     }
-  //     break;
-  //   }
-  // }
-
-  // while(true){
-  //   yCoord = getNumber("Enter a y co-ordinate!");
-  //   if(!isNaN(yCoord) && yCoord != null){
-  //     if(yCoord < 0){
-  //       alert("y co-ordinate is out of range! range:0-" + (gridSizeY-1));
-  //     }else if(yCoord > gridSizeY-1){
-  //       alert("y co-ordinate is out of range! range:0-" + (gridSizeY-1));
-  //     }
-  //     break;
-  //   }
-  // }
 
   if(rhino.checkPos(xCoord, yCoord) === true){
     alert("You have found the Rhino");

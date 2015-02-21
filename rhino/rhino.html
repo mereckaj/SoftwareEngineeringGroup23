@@ -12,7 +12,7 @@
 </head>
 <body>
   <div class="container">
-      <ul class="nav nav-tabs">
+    <ul class="nav nav-tabs">
       <li role="presentation" class="active"><a href="rhino.html">Play</a></li>
       <li role="presentation"><a href="learn.html">Learn</a></li>
       <li role="presentation"><a href="about.html">About </a></li>
@@ -24,7 +24,7 @@
         <div class="game">
           <div class="container" align="center">
             <svg id="svg_gird" xmlns="http://www.w3.org/2000/svg" width="420.0" height="420.0">
-              <circle id="00" class="dot" r="4.0" cx="10" cy="10" fill="black"/>
+              <!--circle id="00" class="dot" r="4.0" cx="10" cy="10" fill="black"/>
               <circle id="10" class="dot" r="4.0" cx="110" cy="10" />
               <circle id="20" class="dot" r="4.0" cx="210" cy="10" />
               <circle id="30" class="dot" r="4.0" cx="310" cy="10" />
@@ -52,8 +52,14 @@
               <circle id="14" class="dot" r="4.0" cx="110" cy="410" />
               <circle id="24" class="dot" r="4.0" cx="210" cy="410" />
               <circle id="34" class="dot" r="4.0" cx="310" cy="410" />
-              <circle id="44" class="dot" r="4.0" cx="410" cy="410" />
+              <circle id="44" class="dot" r="4.0" cx="410" cy="410" /-->
+              <defs>
+                 <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
+                   <path d="M 60 0 L 0 0 0 60" fill="none" stroke="black" stroke-width="1"/>
+                 </pattern>
+               </defs>
 
+               <rect width="100%" height="100%" fill="url(#grid)" />
             </svg>
           </div>
           <div class="container" align="center">
