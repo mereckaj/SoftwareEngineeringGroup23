@@ -44,7 +44,11 @@ function Rhino(){
     else blocks = blocks + (xPos - xGuess);
     return ("The Rhino is " + blocks + " blocks away");
   };
+  rhino.showPos = function(){
+    alert(xPos+"-"+yPos);
+  };
 };
+
 /***************************************************************/
 
 
@@ -58,11 +62,20 @@ function City(){
 
 
 var main = function(){
+  //Hide the winner text and the play again button
+  $("#win_text").hide();
+  $("#playAgain").hide();
+
   rhino = new Rhino();
   grid = new City();
+  rhino.showPos();
 
-  var guessButton = document.getElementById('makeGuess');     //gets the button by ID *allows us to check if the button is pressed*
-  guessButton.addEventListener('click', makeGuess, false);    //when the button is pressed the makeGuess() function is called
+  var guessButton = document.getElementById('makeGuess');
+  guessButton.addEventListener('click', makeGuess, false);
+  guessButton.disabled = false;
+
+  var guessButton = document.getElementById('playAgain');
+  guessButton.addEventListener('click', playAgain, false);
   guessButton.disabled = false;
 
   // Enter/Return key listener. Will make a guess at the selected coordinates if the user hits enter
@@ -82,16 +95,11 @@ function makeGuess(){
   // Get new x and y coordinates from the input boxes
   xCoord =  document.getElementById('x_val').value;
   yCoord =  document.getElementById('y_val').value;
-  //Set colour of last guess
-  $svg = $("#svg_gird");
-  //Set the current guess' colour to "lastGuessColour"
-  $("#"+xCoord+""+yCoord, $svg).attr('style', "fill:"+lastGuessColour);
-  //Set the previous guess' colour to black
-  //$("#"+lastx+""+lasty, $svg).attr('style', "fill:"+normalColour);
 
 
   if(rhino.checkPos(xCoord, yCoord) === true){
-    alert("You have found the Rhino");
+    displayFoundMessage()
+    // alert("You have found the Rhino");
   }
   else{
     alert(rhino.getDistFromGuess(xCoord, yCoord));
@@ -108,7 +116,25 @@ function getNumber(text){     //Converts the String that the user enters into an
   var intRes = parseInt(res);
   return intRes;
 };
-
+function displayFoundMessage(){
+  $svg = $("#svg_gird");
+  $("#grid", $svg).attr('visibility', "hidden");
+  $("#rhino_pic", $svg).attr('visibility', "visible");
+  $svg.attr('visibility', "hidden");
+  $("#user_input").hide();
+  $("#win_text").show();
+  $("#playAgain").show();
+}
+function playAgain(){
+  $svg = $("#svg_gird");
+  $("#grid", $svg).attr('visibility', "visible");
+  $("#rhino_pic", $svg).attr('visibility', "hidden");
+  $svg.attr('visibility', "visible");
+  $("#user_input").show();
+  $("#win_text").hide();
+  $("#playAgain").hide();
+  rhino.move();
+}
 /**function markDot(iX, iY){ //test function, not working yet
   var offset = (gridSizeX * iY) + iX;
   realDots[offset].setAttribute("fill", "green");

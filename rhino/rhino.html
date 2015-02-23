@@ -23,7 +23,7 @@
       <div class="panel-body">
         <div class="game">
           <div class="container" align="center">
-            <svg id="svg_gird" xmlns="http://www.w3.org/2000/svg" width="420.0" height="420.0">
+            <svg id="svg_gird" xmlns="http://www.w3.org/2000/svg" width="420.0" height="420.0" visibility="visible">
               <!--circle id="00" class="dot" r="4.0" cx="10" cy="10" fill="black"/>
               <circle id="10" class="dot" r="4.0" cx="110" cy="10" />
               <circle id="20" class="dot" r="4.0" cx="210" cy="10" />
@@ -54,18 +54,22 @@
               <circle id="34" class="dot" r="4.0" cx="310" cy="410" />
               <circle id="44" class="dot" r="4.0" cx="410" cy="410" /-->
               <defs>
-                 <pattern id="grid" width="60" height="60" patternUnits="userSpaceOnUse">
-                   <path d="M 60 0 L 0 0 0 60" fill="none" stroke="black" stroke-width="1"/>
+                 <pattern visibility="visible" id="grid" width="84" height="84" patternUnits="userSpaceOnUse">
+                   <path d="M 84 0 L 0 0 0 84" fill="none" stroke="black" stroke-width="1"/>
                  </pattern>
                </defs>
-
+               <image id="rhino_pic" visibility="hidden" xlink:href="rhino.svg" x="0" y="0" height="100%" width="100%"/>
                <rect width="100%" height="100%" fill="url(#grid)" />
             </svg>
           </div>
-          <div class="container" align="center">
-            <p>X <input type="number" id="x_val"/></p>
-            <p>Y <input type="number" id="y_val" /></p>
+          <div id="user_input" class="container" align="center">
+            <p>X <input type="number" id="x_val" /></p>
+            <p>Y <input type="number" id="y_val"/></p>
             <button type="button" id="makeGuess" disabled="disabled">Guess</button>
+          </div>
+          <div class="container" align="center">
+            <p id="win_text">Congratulations, you found the rhino</p>
+            <button type="button" id="playAgain" disabled="disabled">Play Again</button>
           </div>
         </div>
       </div>
