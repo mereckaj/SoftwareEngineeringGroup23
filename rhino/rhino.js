@@ -98,9 +98,13 @@ function makeGuess(){
 
   if(rhino.checkPos(xCoord, yCoord) === true){
     displayFoundMessage()
-    // alert("You have found the Rhino");
   }
   else{
+    //Put an ugly red square where the last guess was
+     $svg = $("#svg_gird");
+     $("#lastGuess", $svg).attr('x', 1 + xCoord*84);
+     $("#lastGuess", $svg).attr('y', 1 + yCoord*84);
+     $("#lastGuess", $svg).attr('visibility', "visible");
     alert(rhino.getDistFromGuess(xCoord, yCoord));
   }
 }
@@ -118,6 +122,7 @@ function getNumber(text){     //Converts the String that the user enters into an
 // hide the blue square, the grid and the user input buttons
 // Show the winners text and the play again button
 function displayFoundMessage(){
+  $("#lastGuess", $svg).attr('visibility', "hidden");
   $svg = $("#svg_gird");
   $("#grid", $svg).attr('visibility', "hidden");
   $("#rhino_pic", $svg).attr('visibility', "visible");
@@ -136,6 +141,7 @@ function playAgain(){
   $("#win_text").hide();
   $("#playAgain").hide();
   rhino.move();
+  $("#lastGuess", $svg).attr('visibility', "hidden");
 }
 /**function markDot(iX, iY){ //test function, not working yet
   var offset = (gridSizeX * iY) + iX;
