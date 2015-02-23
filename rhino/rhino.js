@@ -61,6 +61,9 @@ function City(){
 
 
 var main = function(){
+
+  document.getElementById('x_val').value = 0;
+  document.getElementById('y_val').value = 0;
   //Hide the winner text and the play again button
   $("#win_text").hide();
   $("#playAgain").hide();
