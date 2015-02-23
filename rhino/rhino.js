@@ -3,8 +3,6 @@ var gridSizeY = 5;
 var rhino;
 var grid;
 var realDots;
-var lastGuessColour = "#33FF00";
-var normalColour = "#000000";
 var xCoord;
 var yCoord;
 var lastx;
@@ -44,6 +42,7 @@ function Rhino(){
     else blocks = blocks + (xPos - xGuess);
     return ("The Rhino is " + blocks + " blocks away");
   };
+  //Function used for debugging which shows current rhino pos
   rhino.showPos = function(){
     alert(xPos+"-"+yPos);
   };
@@ -68,12 +67,13 @@ var main = function(){
 
   rhino = new Rhino();
   grid = new City();
-  rhino.showPos();
 
+  //Action listeners for makeGuess button
   var guessButton = document.getElementById('makeGuess');
   guessButton.addEventListener('click', makeGuess, false);
   guessButton.disabled = false;
 
+  //Action listeners for playAgain
   var guessButton = document.getElementById('playAgain');
   guessButton.addEventListener('click', playAgain, false);
   guessButton.disabled = false;
@@ -96,7 +96,6 @@ function makeGuess(){
   xCoord =  document.getElementById('x_val').value;
   yCoord =  document.getElementById('y_val').value;
 
-
   if(rhino.checkPos(xCoord, yCoord) === true){
     displayFoundMessage()
     // alert("You have found the Rhino");
@@ -116,6 +115,8 @@ function getNumber(text){     //Converts the String that the user enters into an
   var intRes = parseInt(res);
   return intRes;
 };
+// hide the blue square, the grid and the user input buttons
+// Show the winners text and the play again button
 function displayFoundMessage(){
   $svg = $("#svg_gird");
   $("#grid", $svg).attr('visibility', "hidden");
@@ -125,6 +126,7 @@ function displayFoundMessage(){
   $("#win_text").show();
   $("#playAgain").show();
 }
+//Undo what was done in the above function
 function playAgain(){
   $svg = $("#svg_gird");
   $("#grid", $svg).attr('visibility', "visible");
