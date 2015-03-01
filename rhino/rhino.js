@@ -105,8 +105,8 @@ function makeGuess(){
   else{
     //Put an ugly red square where the last guess was
      $svg = $("#svg_gird");
-     $("#lastGuess", $svg).attr('x', 1 + xCoord*84);
-     $("#lastGuess", $svg).attr('y', 1 + yCoord*84);
+     $("#lastGuess", $svg).attr('x',xCoord*84);
+     $("#lastGuess", $svg).attr('y',yCoord*84);
      $("#lastGuess", $svg).attr('visibility', "visible");
     alert(rhino.getDistFromGuess(xCoord, yCoord));
   }
