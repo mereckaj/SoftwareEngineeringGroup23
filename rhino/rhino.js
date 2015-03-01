@@ -1,5 +1,5 @@
-var gridSizeX = 5;
-var gridSizeY = 5;
+var gridSizeX = 8;
+var gridSizeY = 8;
 var rhino;
 var grid;
 var realDots;
@@ -40,7 +40,7 @@ function Rhino(){
       blocks = blocks + (xGuess - xPos);
     }
     else blocks = blocks + (xPos - xGuess);
-    return ("The Rhino is " + blocks + " blocks away");
+    return blocks;
   };
   //Function used for debugging which shows current rhino pos
   rhino.showPos = function(){
@@ -81,16 +81,10 @@ var main = function(){
   guessButton.addEventListener('click', playAgain, false);
   guessButton.disabled = false;
 
-  // Enter/Return key listener. Will make a guess at the selected coordinates if the user hits enter
-  window.onkeydown = function (e) {
-    var code = e.keyCode ? e.keyCode : e.which;
-    if (code === 13 ) { //up key
-      makeGuess();
-    }
-  };
 }
 
 function makeGuess(){
+  document.getElementById("x_val").focus();
   var userInput;
   //Preserve last x and y coordinates, used to change the colour of the dot back to black
   lastx = xCoord;
@@ -98,20 +92,34 @@ function makeGuess(){
   // Get new x and y coordinates from the input boxes
   xCoord =  document.getElementById('x_val').value;
   yCoord =  document.getElementById('y_val').value;
-
+  if(!checkIfValid(xCoord,yCoord)){
+    alert("Invalid coordinates");
+    return;
+  }
   if(rhino.checkPos(xCoord, yCoord) === true){
     displayFoundMessage()
   }
   else{
-    //Put an ugly red square where the last guess was
-     $svg = $("#svg_gird");
-     $("#lastGuess", $svg).attr('x',xCoord*84);
-     $("#lastGuess", $svg).attr('y',yCoord*84);
-     $("#lastGuess", $svg).attr('visibility', "visible");
-    alert(rhino.getDistFromGuess(xCoord, yCoord));
+    var distance = rhino.getDistFromGuess(xCoord, yCoord);
+    $svg = $("#svg_gird");
+    $("#dist"+xCoord+""+yCoord, $svg).attr('visibility', "visible");
+    document.getElementById("dist"+xCoord+""+yCoord).innerHTML = distance;
+    if(distance==1){
+      alert("Rhino is " + distance +" block away.");
+    }else{
+      alert("Rhino is " + distance +" blocks away.");
+    }
   }
 }
-
+function checkIfValid(x,y){
+  if(x<0 || x>gridSizeX){
+    return false;
+  }
+  if(y<0 || y >gridSizeY){
+    return false;
+  }
+  return true;
+}
 function getNumber(text){     //Converts the String that the user enters into an int
   var res = prompt(text);
 
@@ -125,7 +133,9 @@ function getNumber(text){     //Converts the String that the user enters into an
 // hide the blue square, the grid and the user input buttons
 // Show the winners text and the play again button
 function displayFoundMessage(){
-  $("#lastGuess", $svg).attr('visibility', "hidden");
+  hideDistances();
+  document.getElementById("playAgain").focus();
+  $svg = $("#w").attr('visibility', "hidden");
   $svg = $("#svg_gird");
   $("#grid", $svg).attr('visibility', "hidden");
   $("#rhino_pic", $svg).attr('visibility', "visible");
@@ -144,11 +154,18 @@ function playAgain(){
   $("#win_text").hide();
   $("#playAgain").hide();
   rhino.move();
-  $("#lastGuess", $svg).attr('visibility', "hidden");
 }
 /**function markDot(iX, iY){ //test function, not working yet
   var offset = (gridSizeX * iY) + iX;
   realDots[offset].setAttribute("fill", "green");
 };*/
+function hideDistances(){
+  $svg = $("#svg_gird");
+  for(var i = 0;i <= gridSizeX;i++){
+    for(var j = 0; j < gridSizeY;j++){
+      $("#dist"+i+""+j, $svg).attr('visibility', "hidden");
+    }
+  }
+}
 
 $(document).ready(main);

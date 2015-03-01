@@ -22,19 +22,108 @@
       <div class="panel-body">
         <div class="game">
           <div class="container" align="center">
-            <svg id="svg_gird" xmlns="http://www.w3.org/2000/svg" width="420.0" height="420.0" visibility="visible">
+            <svg id="svg_gird" xmlns="http://www.w3.org/2000/svg" width="400.0" height="400.0" visibility="visible">
               <defs>
-                 <pattern visibility="visible" id="grid" width="84" height="84" patternUnits="userSpaceOnUse">
-                   <path d="M 84 0 L 0 0 0 84" fill="none" stroke="black" stroke-width="1"/>
+                 <pattern visibility="visible" id="grid" width="50" height="50" patternUnits="userSpaceOnUse">
+                   <path d="M 50 0 L 0 0 0 50" fill="none" stroke="black" stroke-width="1"/>
                  </pattern>
                </defs>
                <image id="rhino_pic" visibility="hidden" xlink:href="rhino.svg" x="0" y="0" height="100%" width="100%"/>
                <rect width="100%" height="100%" fill="url(#grid)" />
-               <rect id="lastGuess" width="84" height="84" fill="#ff0000" x="0" y="0" visibility="hidden"/>
+               <!-- Row 0 -->
+               <text id="dist00" x="5"   y="15" fill="red" visibility="hidden"></text>
+               <text id="dist10" x="55"  y="15" fill="red" visibility="hidden"></text>
+               <text id="dist20" x="105" y="15" fill="red" visibility="hidden"></text>
+               <text id="dist30" x="155" y="15" fill="red" visibility="hidden"></text>
+               <text id="dist40" x="205" y="15" fill="red" visibility="hidden"></text>
+               <text id="dist50" x="255" y="15" fill="red" visibility="hidden"></text>
+               <text id="dist60" x="305" y="15" fill="red" visibility="hidden"></text>
+               <text id="dist70" x="355" y="15" fill="red" visibility="hidden"></text>
+               <text id="dist80" x="380" y="15" fill="red" visibility="hidden"></text>
+               <!-- Row 1 -->
+               <text id="dist01" x="5"   y="65" fill="red" visibility="hidden"></text>
+               <text id="dist11" x="55"  y="65" fill="red" visibility="hidden"></text>
+               <text id="dist21" x="105" y="65" fill="red" visibility="hidden"></text>
+               <text id="dist31" x="155" y="65" fill="red" visibility="hidden"></text>
+               <text id="dist41" x="205" y="65" fill="red" visibility="hidden"></text>
+               <text id="dist51" x="255" y="65" fill="red" visibility="hidden"></text>
+               <text id="dist61" x="305" y="65" fill="red" visibility="hidden"></text>
+               <text id="dist71" x="355" y="65" fill="red" visibility="hidden"></text>
+               <text id="dist81" x="380" y="65" fill="red" visibility="hidden"></text>
+               <!-- Row 2 -->
+               <text id="dist02" x="5"   y="115" fill="red" visibility="hidden"></text>
+               <text id="dist12" x="55"  y="115" fill="red" visibility="hidden"></text>
+               <text id="dist22" x="105" y="115" fill="red" visibility="hidden"></text>
+               <text id="dist32" x="155" y="115" fill="red" visibility="hidden"></text>
+               <text id="dist42" x="205" y="115" fill="red" visibility="hidden"></text>
+               <text id="dist52" x="255" y="115" fill="red" visibility="hidden"></text>
+               <text id="dist62" x="305" y="115" fill="red" visibility="hidden"></text>
+               <text id="dist72" x="355" y="115" fill="red" visibility="hidden"></text>
+               <text id="dist82" x="380" y="115" fill="red" visibility="hidden"></text>
+               <!-- Row 3 -->
+               <text id="dist03" x="5"   y="165" fill="red" visibility="hidden"></text>
+               <text id="dist13" x="55"  y="165" fill="red" visibility="hidden"></text>
+               <text id="dist23" x="105" y="165" fill="red" visibility="hidden"></text>
+               <text id="dist33" x="155" y="165" fill="red" visibility="hidden"></text>
+               <text id="dist43" x="205" y="165" fill="red" visibility="hidden"></text>
+               <text id="dist53" x="255" y="165" fill="red" visibility="hidden"></text>
+               <text id="dist63" x="305" y="165" fill="red" visibility="hidden"></text>
+               <text id="dist73" x="355" y="165" fill="red" visibility="hidden"></text>
+               <text id="dist83" x="380" y="165" fill="red" visibility="hidden"></text>
+               <!-- Row 4 -->
+               <text id="dist04" x="5"   y="215" fill="red" visibility="hidden"></text>
+               <text id="dist14" x="55"  y="215" fill="red" visibility="hidden"></text>
+               <text id="dist24" x="105" y="215" fill="red" visibility="hidden"></text>
+               <text id="dist34" x="155" y="215" fill="red" visibility="hidden"></text>
+               <text id="dist44" x="205" y="215" fill="red" visibility="hidden"></text>
+               <text id="dist54" x="255" y="215" fill="red" visibility="hidden"></text>
+               <text id="dist64" x="305" y="215" fill="red" visibility="hidden"></text>
+               <text id="dist74" x="355" y="215" fill="red" visibility="hidden"></text>
+               <text id="dist84" x="380" y="215" fill="red" visibility="hidden"></text>
+               <!-- Row 5 -->
+               <text id="dist05" x="5"   y="265" fill="red" visibility="hidden"></text>
+               <text id="dist15" x="55"  y="265" fill="red" visibility="hidden"></text>
+               <text id="dist25" x="105" y="265" fill="red" visibility="hidden"></text>
+               <text id="dist35" x="155" y="265" fill="red" visibility="hidden"></text>
+               <text id="dist45" x="205" y="265" fill="red" visibility="hidden"></text>
+               <text id="dist55" x="255" y="265" fill="red" visibility="hidden"></text>
+               <text id="dist65" x="305" y="265" fill="red" visibility="hidden"></text>
+               <text id="dist75" x="355" y="265" fill="red" visibility="hidden"></text>
+               <text id="dist85" x="380" y="265" fill="red" visibility="hidden"></text>
+               <!-- Row 6 -->
+               <text id="dist06" x="5"   y="315" fill="red" visibility="hidden"></text>
+               <text id="dist16" x="55"  y="315" fill="red" visibility="hidden"></text>
+               <text id="dist26" x="105" y="315" fill="red" visibility="hidden"></text>
+               <text id="dist36" x="155" y="315" fill="red" visibility="hidden"></text>
+               <text id="dist46" x="205" y="315" fill="red" visibility="hidden"></text>
+               <text id="dist56" x="255" y="315" fill="red" visibility="hidden"></text>
+               <text id="dist66" x="305" y="315" fill="red" visibility="hidden"></text>
+               <text id="dist76" x="355" y="315" fill="red" visibility="hidden"></text>
+               <text id="dist86" x="380" y="315" fill="red" visibility="hidden"></text>
+               <!-- Row 7 -->
+               <text id="dist07" x="5"   y="365" fill="red" visibility="hidden"></text>
+               <text id="dist17" x="55"  y="365" fill="red" visibility="hidden"></text>
+               <text id="dist27" x="105" y="365" fill="red" visibility="hidden"></text>
+               <text id="dist37" x="155" y="365" fill="red" visibility="hidden"></text>
+               <text id="dist47" x="205" y="365" fill="red" visibility="hidden"></text>
+               <text id="dist57" x="255" y="365" fill="red" visibility="hidden"></text>
+               <text id="dist67" x="305" y="365" fill="red" visibility="hidden"></text>
+               <text id="dist77" x="355" y="365" fill="red" visibility="hidden"></text>
+               <text id="dist87" x="380" y="365" fill="red" visibility="hidden"></text>
+               <!-- Row 8 -->
+               <text id="dist08" x="5"   y="395" fill="red" visibility="hidden"></text>
+               <text id="dist18" x="55"  y="395" fill="red" visibility="hidden"></text>
+               <text id="dist28" x="105" y="395" fill="red" visibility="hidden"></text>
+               <text id="dist38" x="155" y="395" fill="red" visibility="hidden"></text>
+               <text id="dist48" x="205" y="395" fill="red" visibility="hidden"></text>
+               <text id="dist58" x="255" y="395" fill="red" visibility="hidden"></text>
+               <text id="dist68" x="305" y="395" fill="red" visibility="hidden"></text>
+               <text id="dist78" x="355" y="395" fill="red" visibility="hidden"></text>
+               <text id="dist88" x="380" y="395" fill="red" visibility="hidden"></text>
             </svg>
           </div>
           <div id="user_input" class="container" align="center">
-            <p>X <input type="number" id="x_val" /></p>
+            <p>X <input type="number" id="x_val" autofocus/></p>
             <p>Y <input type="number" id="y_val"/></p>
             <button type="button" id="makeGuess" disabled="disabled">Guess</button>
           </div>
