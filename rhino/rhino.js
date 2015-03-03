@@ -1,35 +1,45 @@
-var gridSizeX = 8;
-var gridSizeY = 8;
-var rhino;
-var grid;
-var realDots;
 var xCoord;
 var yCoord;
-var lastx;
-var laxty;
+var xMax = 8;
+var yMax = 8;
+var bh = xMax * 50;
+var bw = yMax * 50;
+var p = 25;
+var rhino;
+var grid;
+axisColour = "black";
+gridColour = "black";
+boardColour = "#233777";
+textHeight = 16;
 
-/*****************************************
-  *             Rhino Object             *
-  *                                      *
-  ****************************************/
+// Images used in the background
+image1_src = 'https://mereckaj.github.io/grid1.png';
+image2_src = 'https://mereckaj.github.io/grid2.png';
+image3_src = 'https://mereckaj.github.io/grid3.png';
+image4_src = 'https://mereckaj.github.io/grid4.png';
+imageRhino_src = 'https://mereckaj.github.io/rhino.png';
+
+//DEBUG OPTION TO DISABLE IMAGES
+var debug_images_enabled = true;
+
 function Rhino(){
   var rhino = this;
-  var xPos = Math.floor(Math.random() * (gridSizeX));  //generate a random X position for the rhino in the 2D array
-  var yPos = Math.floor(Math.random() * (gridSizeY));  //generate a random Y position for the rhino in the 2D array
+  var xPos = Math.floor(Math.random() * (xMax));
+  var yPos = Math.floor(Math.random() * (yMax));
 
-  rhino.move = function(){    //moves the rhino to new co-ordinates
-    xPos = Math.floor(Math.random() * (gridSizeX));
-    yPos = Math.floor(Math.random() * (gridSizeY));
+  rhino.move = function(){
+    xPos = Math.floor(Math.random() * (xMax));
+    yPos = Math.floor(Math.random() * (yMax));
   };
 
-  rhino.checkPos = function(xGuess, yGuess){  //compares the co-ordinates of user guess with those of rhino
+  rhino.checkPos = function(xGuess, yGuess){
     if(xGuess == xPos && yGuess == yPos){
       return true;
     }
     else return false;
   };
 
-  rhino.getDistFromGuess = function(xGuess, yGuess){ //returns the number of blocks the rhino is from the guess
+  rhino.getDistFromGuess = function(xGuess, yGuess){
     var blocks = 0;
     if(yGuess >= yPos){
       blocks = blocks + (yGuess - yPos);
@@ -42,130 +52,162 @@ function Rhino(){
     else blocks = blocks + (xPos - xGuess);
     return blocks;
   };
-  //Function used for debugging which shows current rhino pos
-  rhino.showPos = function(){
-    alert(xPos+"-"+yPos);
-  };
 };
-
-/***************************************************************/
-
 
 function City(){
   var city = this;
-  var grid = new Array(gridSizeX);
-  for(var i=0; i<gridSizeX; i++){
-    grid[i] = new Array(gridSizeY);
+  var grid = new Array(xMax);
+  for(var i=0; i<xMax; i++){
+    grid[i] = new Array(yMax);
   }
 }
 
+function drawGrid(context){
+  for (var x = 0; x <= bw; x += 50) {
+    context.moveTo(0.5 + x + p, p);
+    context.lineTo(0.5 + x + p, bh + p);
+  }
+  for (var x = 0; x <= bh; x += 50) {
+    context.moveTo(p, 0.5 + x + p);
+    context.lineTo(bw + p, 0.5 + x + p);
+  }
+  context.strokeStyle = gridColour;
+  context.stroke();
+}
 
-var main = function(){
+function drawBoard2(ctx){
+  ctx.fillStyle = boardColour;
+  ctx.fillRect(0,0,450,450);
+}
 
-  document.getElementById('x_val').value = 0;
-  document.getElementById('y_val').value = 0;
-  //Hide the winner text and the play again button
-  $("#win_text").hide();
-  $("#playAgain").hide();
+function drawAxis(context){
+  context.fillStyle = axisColour;
+  for (var x = 0; x <= xMax;x++){
+    context.fillText(x,20+(x*50),448);
+  }
+  for (var x = 0; x <= yMax;x++){
+    context.fillText(yMax-x,2,30+(x*50));
+  }
+}
+function loadImage(ctx,src,x,y){
+  var image = new Image();
+  image.src = src;
+  image.onload = function(){
+    ctx.drawImage(image, x, y);
+    drawBoarders(ctx);
+  }
+}
+function drawBoard(ctx){
+  if(debug_images_enabled){
+    var r;
+    for(var i = 0; i <=xMax;i++){
+      for(var j = 0; j <=yMax;j++){
+        r = (Math.random()*100)%100;
+        if(r < 25){
+          loadImage(ctx,image1_src,i*50,j*50);
+        }else if(r <50){
+          loadImage(ctx,image2_src,i*50,j*50);
+        }else if(r <75){
+          loadImage(ctx,image3_src,i*50,j*50);
+        }else {
+          loadImage(ctx,image4_src,i*50,j*50);
+        }
+      }
+    }
+  }else{
+    drawBoard2(ctx);
+    drawGrid(ctx);
+    drawAxis(ctx);
+  }
+}
 
-  rhino = new Rhino();
-  grid = new City();
-
-  //Action listeners for makeGuess button
-  var guessButton = document.getElementById('makeGuess');
-  guessButton.addEventListener('click', makeGuess, false);
-  guessButton.disabled = false;
-
-  //Action listeners for playAgain
-  var guessButton = document.getElementById('playAgain');
-  guessButton.addEventListener('click', playAgain, false);
-  guessButton.disabled = false;
-
+function drawBoarders(ctx){
+  ctx.fillStyle = boardColour;
+  ctx.fillRect(0,425,450,25);
+  ctx.fillRect(22,0,428,22);
+  ctx.fillRect(0,0,22,450);
+  ctx.fillRect(427,22,25,425);
+  drawAxis(ctx);
 }
 
 function makeGuess(){
-  document.getElementById("x_val").focus();
-  var userInput;
-  //Preserve last x and y coordinates, used to change the colour of the dot back to black
-  lastx = xCoord;
-  lasty = yCoord;
-  // Get new x and y coordinates from the input boxes
-  xCoord =  document.getElementById('x_val').value;
-  yCoord =  document.getElementById('y_val').value;
+  var c = document.getElementById("game_canvas");
+  var ctx = c.getContext("2d");
+  getNewCoords();
   if(!checkIfValid(xCoord,yCoord)){
     alert("Invalid coordinates");
     return;
   }
   if(rhino.checkPos(xCoord, yCoord) === true){
-    displayFoundMessage()
-  }
-  else{
-    var distance = rhino.getDistFromGuess(xCoord, yCoord);
-    $svg = $("#svg_gird");
-    $("#dist"+xCoord+""+yCoord, $svg).attr('visibility', "visible");
-    document.getElementById("dist"+xCoord+""+yCoord).innerHTML = distance;
-    if(distance==1){
-      alert("Rhino is " + distance +" block away.");
-    }else{
-      alert("Rhino is " + distance +" blocks away.");
-    }
+    addRhinoToGrid(ctx);
+    askIfNewGame();
+  }else{
+    var dst = rhino.getDistFromGuess(xCoord,yCoord);
+    addDistnaceToGrid(ctx,dst,(xCoord*50)+25,((yMax - yCoord)*50)+25);
   }
 }
+
+function addRhinoToGrid(ctx){
+  loadImage(ctx,imageRhino_src,xCoord,yCoord);
+}
+
+function askIfNewGame(){
+  //TODO:
+}
+
+function getNewCoords(){
+  xCoord =  document.getElementById('x_val').value;
+  yCoord =  document.getElementById('y_val').value;
+}
+
+function addDistnaceToGrid(ctx,dst,x,y){
+  //Get the width of the text,
+  var metrics = ctx.measureText(dst);
+  var textWidth = metrics.width;
+  //Set the fill colour of the circle
+  ctx.fillStyle = boardColour;
+  //Start drawing the background circle for the distance
+  ctx.beginPath();
+  ctx.arc(x,y,10,0,2*Math.PI);
+  ctx.fill();
+  ctx.closePath();
+  //Add the distance in the middle of that circle
+  ctx.fillStyle = "white";
+  ctx.fillText(dst,x-(textWidth/2),y+(textHeight/2)-2);
+}
+
+function update(){
+  xCoord =  document.getElementById('x_val').value;
+  yCoord =  document.getElementById('y_val').value;
+  document.getElementById("coords_selected").innerHTML = "What is your guess ? ("+xCoord+","+yCoord+")";
+}
+
 function checkIfValid(x,y){
-  if(x<0 || x>gridSizeX){
+  if(x<0 || x>xMax){
     return false;
   }
-  if(y<0 || y >gridSizeY){
+  if(y<0 || y >yMax){
     return false;
   }
   return true;
 }
-function getNumber(text){     //Converts the String that the user enters into an int
-  var res = prompt(text);
 
-  while(isNaN(res)) {
-    alert("Please enter a valid number!");
-    res = prompt(text);
-  }
-  var intRes = parseInt(res);
-  return intRes;
-};
-// hide the blue square, the grid and the user input buttons
-// Show the winners text and the play again button
-function displayFoundMessage(){
-  hideDistances();
-  document.getElementById("playAgain").focus();
-  $svg = $("#w").attr('visibility', "hidden");
-  $svg = $("#svg_gird");
-  $("#grid", $svg).attr('visibility', "hidden");
-  $("#rhino_pic", $svg).attr('visibility', "visible");
-  $svg.attr('visibility', "hidden");
-  $("#user_input").hide();
-  $("#win_text").show();
-  $("#playAgain").show();
-}
-//Undo what was done in the above function
-function playAgain(){
-  $svg = $("#svg_gird");
-  $("#grid", $svg).attr('visibility', "visible");
-  $("#rhino_pic", $svg).attr('visibility', "hidden");
-  $svg.attr('visibility', "visible");
-  $("#user_input").show();
-  $("#win_text").hide();
-  $("#playAgain").hide();
-  rhino.move();
-}
-/**function markDot(iX, iY){ //test function, not working yet
-  var offset = (gridSizeX * iY) + iX;
-  realDots[offset].setAttribute("fill", "green");
-};*/
-function hideDistances(){
-  $svg = $("#svg_gird");
-  for(var i = 0;i <= gridSizeX;i++){
-    for(var j = 0; j < gridSizeY;j++){
-      $("#dist"+i+""+j, $svg).attr('visibility', "hidden");
-    }
-  }
-}
+var main = function(){
+  $("#x_val").attr('max', xMax);
+  $("#y_val").attr('max', yMax);
+  var c = document.getElementById("game_canvas");
+  var ctx = c.getContext("2d");
+  ctx.font=textHeight+"px Georgia";
 
+  drawBoard(ctx);
+  document.getElementById('x_val').value = 0;
+  document.getElementById('y_val').value = 0;
+
+  rhino = new Rhino();
+  grid = new City();
+
+  var guessButton = document.getElementById('makeGuess');
+  guessButton.addEventListener('click', makeGuess, false);
+  guessButton.disabled = false;
+}
 $(document).ready(main);
