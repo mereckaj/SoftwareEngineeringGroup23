@@ -84,8 +84,8 @@ function drawGridBoard(ctx){
 // Method that randomly selects and draws an image on the board
 function drawImageBoard(ctx){
   var r;
-  for(var i = 0; i <=xMax;i++){
-    for(var j = 0; j <=yMax;j++){
+  for(var i = 0; i <xMax;i++){
+    for(var j = 0; j <yMax;j++){
       r = (Math.random()*100)%100;
       if(r < 25){
         loadImage(ctx,image1_src,i*50,j*50);
@@ -120,7 +120,7 @@ function loadImage(ctx,src,x,y){
   var image = new Image();
   image.src = src;
   image.onload = function(){
-    ctx.drawImage(image, x, y);
+    ctx.drawImage(image, 25+x, 25+y);
     drawBorders(ctx);
   }
 }
@@ -141,9 +141,9 @@ function drawBoard(ctx){
 function drawBorders(ctx){
   ctx.fillStyle = boardColour;
   ctx.fillRect(0,425,450,25);
-  ctx.fillRect(22,0,428,22);
-  ctx.fillRect(0,0,22,450);
-  ctx.fillRect(427,22,25,425);
+  ctx.fillRect(25,0,425,25);
+  ctx.fillRect(0,0,25,450);
+  ctx.fillRect(425,25,25,425);
   //Also draw in the axis
   drawAxis(ctx);
 }
@@ -268,5 +268,4 @@ var main = function(){
   grid = new City();
 
 }
-
 $(document).ready(main);
