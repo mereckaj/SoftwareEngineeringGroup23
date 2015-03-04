@@ -11,7 +11,7 @@ axisColour = "black";
 gridColour = "black";
 boardColour = "#233777";
 textHeight = 16;
-var useImagesOverGrid = true;
+var useImagesOverGrid = false;
 
 // Images for the image board
 image1_src = 'https://mereckaj.github.io/grid1.png';
@@ -224,16 +224,30 @@ function checkIfValid(x,y){
 }
 
 function changeUI(){
+  if(useImagesOverGrid==false){
+    if(window.innerWidth<450){
+      alert("Your screen is too small for the imaged version\nMinimum screen width for imaged version is 450px");
+      return;
+    }
+  }
   //Inverts the UI settings, (Images of Grid)
   var c = document.getElementById("game_canvas");
   var ctx = c.getContext("2d");
   useImagesOverGrid = !useImagesOverGrid;
   drawBoard(ctx);
 }
+
+function draw(ctx) {
+  var w = window.innerWidth;
+  var h =  window.innerHeight;
+  alert("("+h+","+w+")")
+}
+
 /*
  *  Main method
  */
 var main = function(){
+
   
   //Set the maximum values of the sliders
   $("#x_val").attr('max', xMax);
@@ -255,7 +269,10 @@ var main = function(){
   var UIchoiceButton = document.getElementById('changeUI');
   UIchoiceButton.addEventListener('click', changeUI, false);
   UIchoiceButton.disabled = false;
-
+  draw(ctx);
+  if(window.innerWidth < 450){
+    useImagesOverGrid = false;
+  }
   //Method that will draw the game
   drawBoard(ctx);
 
