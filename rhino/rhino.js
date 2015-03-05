@@ -12,12 +12,15 @@ gridColour = "black";
 boardColour = "#233777";
 textHeight = 16;
 var useImagesOverGrid = false;
-
+var totalGuesses = 1;
+introLengt = 15000;//5 sec
 // Images for the image board
 image1_src = 'https://mereckaj.github.io/grid1.png';
 image2_src = 'https://mereckaj.github.io/grid2.png';
 image3_src = 'https://mereckaj.github.io/grid3.png';
 image4_src = 'https://mereckaj.github.io/grid4.png';
+rhino_src_black = 'https://mereckaj.github.io/rhino_black.png';
+rhino_src_white = 'https://mereckaj.github.io/rhino_white.png';
 
 //Create a new rhino object with its internal methods
 function Rhino(){
@@ -50,6 +53,9 @@ function Rhino(){
     else blocks = blocks + (xPos - xGuess);
     return blocks;
   };
+  rhino.showPos = function(){
+    alert(xPos+","+yPos);
+  }
 };
 
 //Create a new city object which ccontaisn a 2d array that represents the game board
@@ -116,12 +122,14 @@ function drawAxis(context){
  * this method draws that image at that location.
  * This also draws the boarders
  */
-function loadImage(ctx,src,x,y){
+function loadImage(ctx,src,x,y,drawBorders){
   var image = new Image();
   image.src = src;
   image.onload = function(){
     ctx.drawImage(image, 25+x, 25+y);
-    drawBorders(ctx);
+    if(drawBorders){
+      drawBorders(ctx);
+    }
   }
 }
 
@@ -129,7 +137,9 @@ function loadImage(ctx,src,x,y){
 function drawBoard(ctx){
   if(useImagesOverGrid){
     //Boarder and axis are drawnwithin the drawImageBoard methods
+    drawGridBoard(ctx);
     drawImageBoard(ctx);
+    drawAxis(ctx);
   }else{
     drawGridBoard(ctx);
     drawGrid(ctx);
@@ -147,7 +157,6 @@ function drawBorders(ctx){
   //Also draw in the axis
   drawAxis(ctx);
 }
-
 //Logic for making a guess
 function makeGuess(){
   //Get the context of the Canvas
@@ -155,8 +164,7 @@ function makeGuess(){
   var ctx = c.getContext("2d");
 
   //Update the coordinates to the ones that are currently selected by the user
-  getNewCoords();
-
+  update();
   //Check if the coordinates are valid (in the expected range of (>0) && ( < xMax || yMax )
   if(!checkIfValid(xCoord,yCoord)){
     alert("Invalid coordinates");
@@ -166,24 +174,40 @@ function makeGuess(){
   //Check if the user has found the thino.
   if(rhino.checkPos(xCoord, yCoord) === true){
     //Tell the user that they have won and add a picture of a rhino to the canvas
-    addRhinoToGrid(ctx);
-    askIfNewGame();
+    addRhinoToGrid(ctx,useImagesOverGrid);
   }else{
+    totalGuesses++;
     //Add the distance from the users guess to the rhino at the location of the guess
     var dst = rhino.getDistFromGuess(xCoord,yCoord);
     addDistnaceToGrid(ctx,dst,(xCoord*50)+25,((yMax - yCoord)*50)+25);
   }
 }
 
-function addRhinoToGrid(ctx){
-  //TODO:
-  alert("You found the rhino.\nCongratulations !")
+function addRhinoToGrid(ctx,isBlack){
+  if(isBlack){
+    loadImage(ctx,rhino_src_white,(xCoord*50)-25,((yMax - yCoord)*50)-25);
+  }else{
+    loadImage(ctx,rhino_src_black,(xCoord*50)-25,((yMax - yCoord)*50)-25);
+  }
+  delayedWinningMessage(3500,ctx);
 }
-
-function askIfNewGame(){
-  //TODO:
+// This shows the user the winning message after some time
+function delayedWinningMessage(time,ctx) { 
+  setTimeout(function() {
+    var guessString;
+    if(totalGuesses==1){
+      guessString="1 guess";
+    }else{
+      guessString=totalGuesses + " guesses";
+    }
+    if(confirm("You found the rhino in " + guessString+".\nDo you want to play again ?")){
+      drawBoard(ctx);
+      totalGuesses=0;
+      rhino.move();
+      document.getElementById("coords_selected").innerHTML = "What is your 1st guess ? ("+xCoord+","+yCoord+")";
+    }
+  }, time); 
 }
-
 //Just fetches new coordinates into these global variables
 function getNewCoords(){
   xCoord =  document.getElementById('x_val').value;
@@ -209,7 +233,77 @@ function addDistnaceToGrid(ctx,dst,x,y){
 // Update the text that is displayed to the user with their currently chosen coordinates
 function update(){
   getNewCoords();
-  document.getElementById("coords_selected").innerHTML = "What is your guess ? ("+xCoord+","+yCoord+")";
+  document.getElementById("coords_selected").innerHTML = "What is your "+getGuessString(totalGuesses)+ " guess ? ("+xCoord+","+yCoord+")";
+}
+function getGuessString(n){
+  if(n>81){
+    return "some big numbered"
+  }
+  switch(n){
+    case 2:
+      return "2nd";
+      break;
+    case 3:
+      return "3rd";
+      break;
+    case 21:
+      return "21st";
+      break;
+    case 22:
+      return "22nd";
+      break;
+    case 23:
+      return "23rd";
+      break;
+    case 31:
+      return "31st";
+      break;
+    case 32:
+      return "32nd";
+      break;
+    case 33:
+      return "33rd";
+      break;
+    case 41:
+      return "41st";
+      break;
+    case 42:
+      return "42nd";
+      break;
+    case 43:
+      return "43rd";
+      break;
+    case 51:
+      return "51st";
+      break;
+    case 52:
+      return "52nd";
+      break;
+    case 53:
+      return "53rd";
+      break;
+    case 61:
+      return "61st";
+      break;
+    case 62:
+      return "62nd";
+      break;
+    case 63:
+      return "63rd";
+      break;
+    case 71:
+      return "71st";
+      break;
+    case 72:
+      return "72nd";
+      break;
+    case 73:
+      return "73rd";
+    case 81:
+      return "81st";
+    default:
+      return n+"th";
+  }
 }
 
 //Check if the two numbers are within the range of the expected value
@@ -236,19 +330,30 @@ function changeUI(){
   useImagesOverGrid = !useImagesOverGrid;
   drawBoard(ctx);
 }
-
-function draw(ctx) {
-  var w = window.innerWidth;
-  var h =  window.innerHeight;
-  alert("("+h+","+w+")")
+function drawIntro(ctx){
+  var c = document.getElementById("game_canvas");
+  drawGridBoard(ctx);
+  setTimeout(function() {
+    ctx.textAlign='center';
+    ctx.fillStyle='white';
+    ctx.fillText("A Rhino is lost in New York.",c.width/2,c.height/2-textHeight);
+  }, 0000);
+  setTimeout(function() {
+    ctx.fillText("Can you find her?",c.width/2,c.height/2);
+  }, 2000);
+  setTimeout(function() {
+    ctx.fillText("You select your co-ordinates.",c.width/2,c.height/2+(textHeight));
+  }, 4000);
+  setTimeout(function() {
+    ctx.fillText("A helicopter pilot will tell you",c.width/2,c.height/2+(textHeight*2));
+    ctx.fillText("how far you have to walk.",c.width/2,c.height/2+(textHeight*3));
+  }, 6000);
 }
-
 /*
  *  Main method
  */
 var main = function(){
 
-  
   //Set the maximum values of the sliders
   $("#x_val").attr('max', xMax);
   $("#y_val").attr('max', yMax);
@@ -269,12 +374,15 @@ var main = function(){
   var UIchoiceButton = document.getElementById('changeUI');
   UIchoiceButton.addEventListener('click', changeUI, false);
   UIchoiceButton.disabled = false;
-  draw(ctx);
   if(window.innerWidth < 450){
     useImagesOverGrid = false;
   }
   //Method that will draw the game
-  drawBoard(ctx);
+  drawIntro(ctx);
+  setTimeout(function(){
+    ctx.textAlign='start';
+    drawBoard(ctx);
+  },introLengt);
 
   //Initialize the sliders to a 0 value
   document.getElementById('x_val').value = 0;
