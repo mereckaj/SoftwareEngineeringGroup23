@@ -173,6 +173,10 @@ function makeGuess(){
 
   //Check if the user has found the thino.
   if(rhino.checkPos(xCoord, yCoord) === true){
+    var UIchoiceButton = document.getElementById('changeUI');
+    var guessButton = document.getElementById('makeGuess');
+    guessButton.disabled = true;
+    UIchoiceButton.disabled = true;
     //Tell the user that they have won and add a picture of a rhino to the canvas
     addRhinoToGrid(ctx,useImagesOverGrid);
   }else{
@@ -201,6 +205,12 @@ function delayedWinningMessage(time,ctx) {
       guessString=totalGuesses + " guesses";
     }
     if(confirm("You found the rhino in " + guessString+".\nDo you want to play again ?")){
+      var UIchoiceButton = document.getElementById('changeUI');
+      var guessButton = document.getElementById('makeGuess');
+      guessButton.disabled = false;
+      UIchoiceButton.disabled = false;
+      xCoord =  document.getElementById('x_val').value = 0;
+      yCoord =  document.getElementById('y_val').value= 0;
       drawBoard(ctx);
       totalGuesses=0;
       rhino.move();
@@ -368,18 +378,18 @@ var main = function(){
   //Event listener for Guess button
   var guessButton = document.getElementById('makeGuess');
   guessButton.addEventListener('click', makeGuess, false);
-  guessButton.disabled = false;
 
   //Event listener for ChangeUI button
   var UIchoiceButton = document.getElementById('changeUI');
   UIchoiceButton.addEventListener('click', changeUI, false);
-  UIchoiceButton.disabled = false;
   if(window.innerWidth < 450){
     useImagesOverGrid = false;
   }
   //Method that will draw the game
   drawIntro(ctx);
   setTimeout(function(){
+    guessButton.disabled = false;
+    UIchoiceButton.disabled = false;
     ctx.textAlign='start';
     drawBoard(ctx);
   },introLengt);
