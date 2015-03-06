@@ -22,6 +22,9 @@ image4_src = 'https://mereckaj.github.io/grid4.png';
 rhino_src_black = 'https://mereckaj.github.io/rhino_black.png';
 rhino_src_white = 'https://mereckaj.github.io/rhino_white.png';
 
+var special = ['zeroth','first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelvth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
+var deca = ['twent', 'thirt', 'fourt', 'fift', 'sixt', 'sevent', 'eight', 'ninet'];
+
 //Create a new rhino object with its internal methods
 function Rhino(){
   var rhino = this;
@@ -246,77 +249,9 @@ function update(){
   document.getElementById("coords_selected").innerHTML = "What is your "+getGuessString(totalGuesses)+ " guess ? ("+xCoord+","+yCoord+")";
 }
 function getGuessString(n){
-  if(n>81){
-    return "some big numbered"
-  }
-  switch(n){
-    case 1:
-      return "1st";
-      break;
-    case 2:
-      return "2nd";
-      break;
-    case 3:
-      return "3rd";
-      break;
-    case 21:
-      return "21st";
-      break;
-    case 22:
-      return "22nd";
-      break;
-    case 23:
-      return "23rd";
-      break;
-    case 31:
-      return "31st";
-      break;
-    case 32:
-      return "32nd";
-      break;
-    case 33:
-      return "33rd";
-      break;
-    case 41:
-      return "41st";
-      break;
-    case 42:
-      return "42nd";
-      break;
-    case 43:
-      return "43rd";
-      break;
-    case 51:
-      return "51st";
-      break;
-    case 52:
-      return "52nd";
-      break;
-    case 53:
-      return "53rd";
-      break;
-    case 61:
-      return "61st";
-      break;
-    case 62:
-      return "62nd";
-      break;
-    case 63:
-      return "63rd";
-      break;
-    case 71:
-      return "71st";
-      break;
-    case 72:
-      return "72nd";
-      break;
-    case 73:
-      return "73rd";
-    case 81:
-      return "81st";
-    default:
-      return n+"th";
-  }
+  if (n < 20) return special[n];
+  if (n%10 === 0) return deca[Math.floor(n/10)-2] + 'ieth';
+  return deca[Math.floor(n/10)-2] + 'y-' + special[n%10];
 }
 
 //Check if the two numbers are within the range of the expected value
