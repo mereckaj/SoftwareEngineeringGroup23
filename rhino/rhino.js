@@ -212,7 +212,7 @@ function delayedWinningMessage(time,ctx) {
       xCoord =  document.getElementById('x_val').value = 0;
       yCoord =  document.getElementById('y_val').value= 0;
       drawBoard(ctx);
-      totalGuesses=0;
+      totalGuesses=1;
       rhino.move();
       document.getElementById("coords_selected").innerHTML = "What is your 1st guess ? ("+xCoord+","+yCoord+")";
     }
@@ -250,6 +250,9 @@ function getGuessString(n){
     return "some big numbered"
   }
   switch(n){
+    case 1:
+      return "1st";
+      break;
     case 2:
       return "2nd";
       break;
