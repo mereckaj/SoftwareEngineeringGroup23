@@ -3,28 +3,30 @@
   <head>
     <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title> <!-- TITLE --></title>
-    <link rel="stylesheet" type="text/css" href=".css"> <!-- CHANGE CSS LOCATION -->
-    <script type="application/javascript" src=".js"></script> <!-- CHANGE JS LOCATION -->
+    <title>Rhino | Play</title>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="rhino.css"> <!-- CHANGE CSS LOCATION -->
+    <script type="application/javascript" src="rhino.js"></script> <!-- CHANGE JS LOCATION -->
     <!-- Load boostrap stuff -->
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
   </head>
   <body>
     <nav class="navbar navbar-default">
-      <div class="container-fluid">        <div class="navbar-header">
+      <div class="container-fluid">
+        <div class="navbar-header">
           <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
             <span class="sr-only">Toggle navigation</span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="#">GAME TITLE</a> <!-- GAME TITLE AND LINK TO INDEX-->
+          <a class="navbar-brand" href="index.html">Rhino</a> <!-- GAME TITLE-->
         </div>
         <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
           <ul class="nav navbar-nav">
             <!-- ADD class="active" to THIS page below -->
-            <li role="presentation"><a href="index.html">Play</a></li>
+            <li role="presentation" class="active"><a href="index.html">Play</a></li>
             <li role="presentation"><a href="learn.html">Learn</a></li>
             <li role="presentation"><a href="about.html">About </a></li>
             <li role="presentation"><a href="code.html">Code </a></li>
@@ -32,7 +34,23 @@
         </div>
       </div>
     </nav>
-    <!-- PAGE GOES HERE -->
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="container" align="center">
+          <canvas id="game_canvas" width="450" height="450" style="border:1px solid #000000;"></canvas> 
+        </div>
+        <div id="user_input" class="container" align="center">
+          <p id="coords_selected" align="center">What is your 1st guess ? (0,0)</p>
+          <p class="slider-width">
+            <input type="range" id="x_val" min="0" max="0" onchange="update()"/>
+            <br>
+            <input type="range" id="y_val"min="0" max="0" onchange="update()"/>
+          </p>
+          <button type="button" id="makeGuess" disabled="disabled">Guess</button>
+        </div>
+        <button type="button" id="changeUI" disabled="disabled">Grid Version</button>
+      </div>
+    </div>
     <!-- Boostrap script of some sort -->
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
   </body>

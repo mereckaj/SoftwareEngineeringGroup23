@@ -1,0 +1,82 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rhino | Learn</title>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="rhino.css"> <!-- CHANGE CSS LOCATION -->
+    <!-- Load boostrap stuff -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Rhino</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <!-- ADD class="active" to THIS page below -->
+            <li role="presentation"><a href="index.html">Play</a></li>
+            <li role="presentation" class="active"><a href="learn.html">Learn</a></li>
+            <li role="presentation"><a href="about.html">About </a></li>
+            <li role="presentation"><a href="code.html">Code </a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Controls</h3>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    The aim of this game is to correctly guess the location of a rhino that is missing in New York city. 
+                    In order to do that, the user has to select the co-ordinates of where they think the rhino is and click the
+                    "Guess" button.
+                  </p>
+                  <p>
+                    To select the coordinates use the two sliders provided. The upper slider selects the X co-ordinate, similarly, the 
+                    lower slider selects the Y co-ordinate. Each time the user moves the sliders the selected value will appear above the upper slider.
+                  </p>
+                  <p>
+                    Once the user has clicked the "Guess" button, if the entered co-ordinates are corect the user will be notified, otherwise, the distance from the users guess to the rhino will be places at the location of the guess.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Score</h3>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    The aim of this game is to try and find the rhino in as few guesses as possible. The player is encouraged to use
+                    strategic guessing. Additionally, younger players are encouraged to play in groups.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- PAGE GOES HERE -->
+    <!-- Boostrap script of some sort -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>

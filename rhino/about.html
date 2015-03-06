@@ -1,0 +1,94 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Rhino | About</title>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="rhino.css">
+    <!-- Load boostrap stuff -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Rhino</a> 
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <!-- ADD class="active" to THIS page below -->
+            <li role="presentation"><a href="index.html">Play</a></li>
+            <li role="presentation"><a href="learn.html">Learn</a></li>
+            <li role="presentation" class="active"><a href="about.html">About </a></li>
+            <li role="presentation"><a href="https://github.com/rmillwood" target="_blank">Code </a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+      <div class="panel panel-default">
+        <div class="panel-body">
+          <div class="row">
+            <div class="col-xs-12">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">About the game</h3>
+                </div>
+                <div class="panel-body">
+                  <p>A rhino is lost in New York. Can you find it?</p>
+                  <p>
+                    In this program New York is a 8 x 8 grid and the user enters co-ordinates to guess the position of the rhino.
+                    The computer responds by saying how far away the user has to walk (along the grid lines) to find the rhino. 
+                    This distance is recorded on the grid.
+                  </p>
+                  <p>
+                    The aim is to minimise the number of guesses and this involves some strategic thinking, which will often be enchanced when the children are working in small groups.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <a href="gallery/intro.png"><img src="gallery/intro.png" alt="Introduction Screen"></a>
+                <div class="caption">
+                  <h3>Introduction Screen</h3>
+                  <p>This is the screen that was presented to the user when they started the game.</p>
+                </div>
+              </div>
+            </div>            
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <a href="gallery/main.png"><img src="gallery/main.png" alt="Main Screen"></a>
+                <div class="caption">
+                  <h3>Main Screen</h3>
+                  <p>This is the screen that the users played the game on. The program would wait for the user to input
+                    two numbers, in the range of 0 to 8. These numbers are then interpreted as the coordinates of the users guess.
+                  </p>
+                </div>
+              </div>
+            </div>
+            <div class="col-sm-6 col-md-4">
+              <div class="thumbnail">
+                <a href="gallery/win.png"><img src="gallery/win.png" alt="Winner winner"></a>
+                <div class="caption">
+                  <h3>Winner winner</h3>
+                  <p>This is what the screen looks like when the user find the rhino successfully.</p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    <!-- Boostrap script of some sort -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
