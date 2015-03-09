@@ -5,6 +5,8 @@ axisColour = "black";
 gridColour = "black";
 boardColour = "#233777";
 textHeight = 16;
+ychange = 200;
+rectchange = 0;
 
 // Images used in the background
 image1_src = "bath2.png";
@@ -32,12 +34,14 @@ function drawBoard(ctx){
     
           loadImage(ctx,image1_src,bathX, bathY);
           loadImage(ctx,image3_src,10,450/2+20);
-          // ctx.rect(50,50,bathX,bathY);
-       //   	for (var x = 0; x <= 50; x += 1)
-         
-
-          
-   
+          ctx.fillStyle="#0000FF";
+  	      for (var x = 0; x <= 50; x += 1){
+  		  ctx.fillStyle="#0000FF";
+  		  ctx.fillRect(150,ychange,180,rectchange);
+  	}
+  	ychange-=5;
+  	rectchange +=5;
+   //
 }
 
 
@@ -50,14 +54,10 @@ var main = function(){
   var ctx = c.getContext("2d");
   ctx.font=textHeight+"px Georgia";
 
-  drawBoard(ctx);
-  	ctx.fillStyle="#0000FF";
-  	for (var x = 0; x <= 50; x += 1){
-  		ctx.fillStyle="#0000FF";
-  		ctx.fillRect(50,50,150,100);
-  	}
-		
-
+  //drawBoard(ctx);
+  	
+  	
+	setInterval(function(){ drawBoard(ctx); }, 100);
 
 }
 $(document).ready(main);

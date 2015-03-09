@@ -15,10 +15,10 @@ var useImagesOverGrid = false;
 var totalGuesses = 1;
 introLengt = 15000;//5 sec
 // Images for the image board
-image1_src = 'https://mereckaj.github.io/grid1.png';
-image2_src = 'https://mereckaj.github.io/grid2.png';
-image3_src = 'https://mereckaj.github.io/grid3.png';
-image4_src = 'https://mereckaj.github.io/grid4.png';
+image1_src = 'grid1.png';
+image2_src = 'grid2.png';
+image3_src = 'grid3.png';
+image4_src = 'grid4.png';
 rhino_src_black = 'https://mereckaj.github.io/rhino_black.png';
 rhino_src_white = 'https://mereckaj.github.io/rhino_white.png';
 
