@@ -58,6 +58,7 @@ function  manButtonPressed(){
 }
 
 function showerEffect(){
+  
   if(flow===false){
     flow=true;
     showerX+=2;
@@ -66,6 +67,8 @@ function showerEffect(){
     flow=false;
     showerX-=2;
   }
+
+ 
 }
 
 
@@ -85,15 +88,15 @@ function drawBoard(ctx){
   ctx.fillStyle="#66FFFF";
   for (var x = 0; x <= 50; x += 1){
     ctx.clearRect(0, 0, 450, 450);
-  	ctx.fillRect(150,200,180,waterChange);
+    ctx.fillRect(150,200,180,waterChange);
   }
 
   if(tapOn===true && plugIn==true && waterChange != waterHeightLimit){
-  	 waterChange -=1;
+     waterChange -=1;
      console.log(waterChange);
    }
 
-   //if(tapOn)
+   if(tapOn)
     ctx.fillRect(showerX,200,5,-168);
 
   else if(plugIn==false && (waterChange!=0)) {
@@ -109,6 +112,7 @@ function drawBoard(ctx){
     else
        ctx.fillRect(160,195,15,-5);
 
+
 }
 
 
@@ -120,9 +124,9 @@ var main = function(){
   var c = document.getElementById("game_canvas");
   var ctx = c.getContext("2d");
   ctx.font=textHeight+"px Georgia";
- 	
+  
 
-	setInterval(function(){ drawBoard(ctx); }, 50);
+  setInterval(function(){ drawBoard(ctx); }, 50);
     setInterval(function(){ showerEffect(); }, 500);
 
   } 
