@@ -255,3 +255,6 @@ function setRestitutionValueFromRange() {
 	syncValue('restitution_text','restitution_range');
 	
 }
+
+$(document).ready(main);
+
