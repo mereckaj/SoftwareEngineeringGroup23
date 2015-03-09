@@ -1,0 +1,99 @@
+<!DOCTYPE HTML>
+<html>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Snooker Angles | Learn</title>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="iosangles.css"> <!-- CHANGE CSS LOCATION -->
+    <!-- Load boostrap stuff -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">        
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="index.html">Snooker Angles</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <!-- ADD class="active" to THIS page below -->
+            <li role="presentation"><a href="index.html">Play</a></li>
+            <li role="presentation"><a href="flip.html">Flip</a></li>
+            <li role="presentation" class="active"><a href="learn.html">Learn</a></li>
+            <li role="presentation"><a href="about.html">About </a></li>
+            <li role="presentation"><a href="code.html">Code</a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <div class="panel panel-default">
+      <div class="panel-body">
+        <div class="container">
+          <div class="row">
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Angles!</h3>
+                </div>
+                <div class="panel-body">
+                	<p>
+                   	To get the ball in the pocket, you must imagine the angle it would take.
+                   	By playing, you find out which number makes which angle. This should help you know your angles!
+                  	</p>
+                  	<p>
+                  	<svg id="angleDiagram" xmlns="http://www.w3.org/2000/svg" width="180" height="180">
+          				<path class="constructionLine" id="vertical" d="m 90,35 0,110" />
+         				<path class="constructionLine" id="horizontal" d="m 38,90 110,0" />
+          				<text class="diagramText"x="90"  y="16" >North</text>
+          				<text class="diagramText"x="90"  y="28" >0&deg;</text>
+          				<text class="diagramText"x="165"  y="88" >East</text>
+          				<text class="diagramText"x="165"  y="100" >90&deg;</text>
+          				<text class="diagramText"x="90"  y="161" >South</text>
+          				<text class="diagramText"x="90"  y="173" >180&deg;</text>
+          				<text class="diagramText"x="20"  y="88" >West</text>
+          				<text class="diagramText"x="20"  y="100" >270&deg;</text>
+          				<text class="diagramText"x="140"  y="60" >60&deg;</text>
+          				<path class="vectorLine" id="direction" d="m 90,90 80,-40 -2,4 -2,-4 6,0" />
+          				<path class="constructionLine" id="turn" d="m 90,45 c 0,0 25,0 40,25" />
+        			</svg>
+                  </p>
+        		  <p>The numbers are:</p>
+        			<ul>
+          				<li>0&deg; for straight up (North),</li>
+          				<li>90&deg; for right (East),</li>
+          				<li>180&deg; for down (South) and</li>
+          				<li>270&deg; for left (West).</li>
+        			</ul>
+        		 <p>This way of measuring angles is called bearings and is used by orienteers,<br>ships and planes to find their way.</br></p>
+                </div>
+              </div>
+            </div>
+            <div class="col-xs-12 col-sm-12 col-md-6 col-lg-6">
+              <div class="panel panel-default">
+                <div class="panel-heading">
+                  <h3 class="panel-title">Score</h3>
+                </div>
+                <div class="panel-body">
+                  <p>
+                    The aim of the game is to pot the ball in as few attempts as possible. The user is encouraged to strategically plan their turns.
+                    Good luck.
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- Boostrap script of some sort -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
+</html>
