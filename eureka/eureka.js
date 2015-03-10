@@ -75,8 +75,11 @@ function loadImage(ctx,src,x,y){
 }
 //A Function which when run, creates a new point on the graph and stores it in an array with the other points.
 function graphPointCreate(ctx){
-  noOfGraphpoints++;
-  graphPointArray.push(new graphPoint(ctx, noOfGraphpoints, waterChange));
+  if(waterChange==0){
+  }else{
+    noOfGraphpoints++;
+    graphPointArray.push(new graphPoint(ctx, noOfGraphpoints, waterChange));
+  }
 }
 //The graphPoint object is a point on the graph which has a certain X/Y values depending on
 //the number of previously created points and the waterLevel at the time of creation
