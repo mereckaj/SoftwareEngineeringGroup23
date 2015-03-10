@@ -248,10 +248,12 @@ function getNumber(text) {
 
 function setFrictionValueFromRange() {
 	coefficientOfFriction = 1 * document.getElementById('friction_range').value;
+	document.getElementById('friction_text').value = coefficientOfFriction;
 	syncValue('friction_text','friction_range');
 }
 function setRestitutionValueFromRange() {
 	coefficientOfRestitution = 1 * document.getElementById('restitution_range').value;
+	document.getElementById('restitution_text').value = coefficientOfRestitution;
 	syncValue('restitution_text','restitution_range');
 	
 }
