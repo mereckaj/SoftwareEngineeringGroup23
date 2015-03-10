@@ -65,8 +65,8 @@ div.appPage {
 	line-height: 110%;
 	background-color: White;
 }
-div.appPage p, li {
-	font-size:75%;
+div.appPage p{
+	font-size:5%;
 	margin: 0px;
 	padding-left: 0.5em;
 	padding-right: 0.5em;

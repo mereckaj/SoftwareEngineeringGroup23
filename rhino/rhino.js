@@ -1,3 +1,4 @@
+
 axisColour = "black";
 gridColour = "black";
 guessColour = "white";
@@ -76,6 +77,7 @@ function City(){
 
 //Draws the actual grid onto the board
 function drawGrid(context){
+  context.beginPath()
   for (var x = 0; x <= bw; x += 50) {
     context.moveTo(0.5 + x + p, p);
     context.lineTo(0.5 + x + p, bh + p);
@@ -86,6 +88,7 @@ function drawGrid(context){
   }
   context.strokeStyle = gridColour;
   context.stroke();
+  context.closePath();
 }
 
 // Draws the coloured block that is used as a background for the board
@@ -221,7 +224,7 @@ function delayedWinningMessage(time,ctx) {
       drawBoard(ctx);
       totalGuesses=1;
       rhino.move();
-      document.getElementById("coords_selected").innerHTML = "What is your 1st guess ? ("+xCoord+","+yCoord+")";
+      document.getElementById("coords_selected").innerHTML = "What is your first guess ? ("+xCoord+","+yCoord+")";
     }
   }, time); 
 }
@@ -348,6 +351,5 @@ var main = function(){
   //Create a new Rhino and City objects
   rhino = new Rhino();
   grid = new City();
-
 }
 $(document).ready(main);
