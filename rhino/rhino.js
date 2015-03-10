@@ -1,5 +1,7 @@
 axisColour = "black";
 gridColour = "black";
+guessColour = "white";
+introColour = "white";
 boardColour = "#233777";
 textHeight = 18;
 typefaceAndFont = textHeight+ "px sans-serif";
@@ -242,7 +244,7 @@ function addDistnaceToGrid(ctx,dst,x,y){
   ctx.closePath();
   //Add the distance in the middle of that circle
   ctx.font = typefaceAndFont;
-  ctx.fillStyle = "white";
+  ctx.fillStyle = guessColour;
   ctx.fillText(dst,x-(textWidth/2),y+(textHeight/2)-2);
 }
 
@@ -251,6 +253,7 @@ function update(){
   getNewCoords();
   document.getElementById("coords_selected").innerHTML = "What is your "+getGuessString(totalGuesses)+ " guess ? ("+xCoord+","+yCoord+")";
 }
+// This function is copied from some thread on stack overflow.
 function getGuessString(n){
   if (n < 20) return special[n];
   if (n%10 === 0) return deca[Math.floor(n/10)-2] + 'ieth';
@@ -286,16 +289,19 @@ function drawIntro(ctx){
   drawGridBoard(ctx);
   setTimeout(function() {
     ctx.textAlign='center';
-    ctx.fillStyle='white';
+    ctx.fillStyle=introColour;
     ctx.fillText("A Rhino is lost in New York.",c.width/2,c.height/2-textHeight);
   }, 0000);
   setTimeout(function() {
+    ctx.fillStyle=introColour;
     ctx.fillText("Can you find her?",c.width/2,c.height/2);
   }, 2000);
   setTimeout(function() {
+    ctx.fillStyle=introColour;
     ctx.fillText("You select your co-ordinates.",c.width/2,c.height/2+(textHeight));
   }, 4000);
   setTimeout(function() {
+    ctx.fillStyle=introColour;
     ctx.fillText("A helicopter pilot will tell you",c.width/2,c.height/2+(textHeight*2));
     ctx.fillText("how far you have to walk.",c.width/2,c.height/2+(textHeight*3));
   }, 6000);
