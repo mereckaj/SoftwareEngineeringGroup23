@@ -15,12 +15,12 @@ var useImagesOverGrid = false;
 var totalGuesses = 1;
 introLengt = 15000;//5 sec
 // Images for the image board
-image1_src = 'grid1.png';
-image2_src = 'grid2.png';
-image3_src = 'grid3.png';
-image4_src = 'grid4.png';
-rhino_src_black = 'https://mereckaj.github.io/rhino_black.png';
-rhino_src_white = 'https://mereckaj.github.io/rhino_white.png';
+image1_src = 'gallery/grid1.png';
+image2_src = 'gallery/grid2.png';
+image3_src = 'gallery/grid3.png';
+image4_src = 'gallery/grid4.png';
+rhino_src_black = 'gallery/rhino_black.png';
+rhino_src_white = 'gallery/rhino_white.png';
 
 var special = ['zeroth','first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelvth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
 var deca = ['twent', 'thirt', 'fourt', 'fift', 'sixt', 'sevent', 'eight', 'ninet'];
