@@ -5,34 +5,25 @@ var plugIn = true;
 var manIn=false;
 var waterLimit = -200;
 var flow = false;
-var waterLevels=[];
 var noOfGraphpoints = 0;
-var graphPointArray=[];
 var manY=-245;
-
-axisColour = "black";
-gridColour = "black";
-boardColour = "#233777";
+var graphStart=false;
 textHeight = 16;
-var waterChange = 0;
+var waterLevel = 0;
 var showerX = bathX+58;
+var waterHeightLimit=-76;
 
-var waterHeightLimit=-77;
-
-// Images used in the background
-image1_src = "WideBath.png";
-image3_src = "graph2.png";
-image4_src = "man2.png";
-
-
-//DEBUG OPTION TO DISABLE IMAGES
-var debug_images_enabled = true;
-
+// Images used.
+bathImage = "WideBath.png";
+graphImage = "graph2.png";
+manImage = "man2.png";
 
 //Function which controls the TapOn boolean.
 //Activated when the 'Tap' Button is pressed.
 function  tapPressed(){
   
+  graphStart=true;        //used to begin graph
+
   if(tapOn===false){
     tapOn=true;
   }
@@ -78,7 +69,7 @@ function showerEffect(ctx){
   else{
     flow=false;
     showerX-=2;
-  }
+  } 
 }
 
 //A Function which loads the bath/graph/man images and draws them onto the canvas.
@@ -90,93 +81,99 @@ function loadImage(ctx,src,x,y){
   }
 }
 
-//A Function which when run, creates a new point on the graph and stores it in an array with the other points.
+
+
+
+//A function which is called periodically, and with each call 
+//makes a new point on the graph in respect to the current water level.
 function graphPointCreate(ctx){
-   if(waterChange==0){
-  }else{
+
+  if(graphStart==false){
+  }
+
+  else{
     noOfGraphpoints++;
-    graphPointArray.push(new graphPoint(ctx, noOfGraphpoints, waterChange));
-  }
-}
+    var xPos = 45 + (noOfGraphpoints+3);
+    var yPos =  405 + waterLevel * 2;
+    ctx.fillStyle="#0000ff";
+    ctx.fillRect(xPos,yPos,4,4);
+    
+    if(xPos>400){
+      noOfGraphpoints=0;
+      ctx.clearRect(45,405,450,waterHeightLimit*2);
+    }
 
-
-//The graphPoint object is a point on the graph which has a certain X/Y values depending on
-//the number of previously created points and the waterLevel at the time of creation
-function graphPoint(ctx, indexNumber, waterChangeLevel){
-  var graphPoint = this;
-  var xPos = 45 + (indexNumber+3);
-  var yPos =  405 + waterChange * 2;
-  
-  
-  graphPoint.draw = function(ctx){
-     ctx.fillStyle="#0000ff";
-     ctx.fillRect(xPos,yPos,4,4);
-  } 
-};
-
-//A function which when called draws all of the created graph points.
-function drawGraphPoints(ctx){
-  for(var i=1;i<noOfGraphpoints;i++){
-    graphPointArray[i].draw(ctx);
   }
 };
+
 
 
 //A function which increases the height of the water.
 function increaseWater(){
-  if(waterChange != waterHeightLimit)
-    waterChange--;
+  if(waterLevel != waterHeightLimit)
+    waterLevel--;
 };
 
 //A function which decreases the height of the water.
 function decreaseWater(){
-  if(waterChange != 0)
-    waterChange++;
+  if(waterLevel != 0)
+    waterLevel++;
 };
 
-function checkMan(){
+
+
+//A function which checks the X & Y co-ordinates of the man and updates them if a button has been pressed.
+//Increases the water level as man gets into the bath.
+//Decreases the water level as man exits the bath.
+function checkMan(ctx){
+
+    if(manY<bathY)
+      ctx.clearRect(450/2, 120,200,-200); //clear area above bath
 
     if(manIn==true && manY< bathY)   //move man down if button pressed
-      manY = manY +4;
+      manY=manY+4;
 
-     if(manIn==false && manY!= -245)   //move man up otherwise
-      manY = manY - 4;
+    if(manIn==false && manY!= -245)   //move man up otherwise
+      manY=manY-4;
 
-    if(manY+55>waterChange && manY<bathY && manIn == true){
+    if(manY+55>waterLevel && manY<bathY && manIn == true){   //raise water if man getting into bath
       increaseWater();
     }
 
-    if(manY+55>waterChange && manIn == false){
+    if(manY+55>waterLevel && manIn == false){                //lower water if man getting out of bath
       decreaseWater();
     }
 }
 
 
-//checks whether the tap is on or and updates water level accordingly
+//checks whether the tap is on or and updates water level accordingly and draws the water coming
+//from the tap
 function checkTap(ctx){
-
-    if(tapOn===true && plugIn==true && waterChange != waterHeightLimit){
+    if(tapOn===true && plugIn==true && waterLevel != waterHeightLimit){
      increaseWater();
    }
-
+   ctx.clearRect(showerX-3,120,20,-87); // clear shower water above bath
    if(tapOn){
-   
-     ctx.fillStyle="#66FFFF";
-    ctx.fillRect(showerX,200,5,-170);
+
+     ctx.fillStyle="#66FFFF"; //set water colour
+      ctx.clearRect(showerX,200,7,waterHeightLimit+1); //clear shower water in bath
+     ctx.fillRect(showerX,200,7,waterHeightLimit+1); //fill shower water in bath
+     ctx.fillRect(showerX,120,7,-87);                //fill shower water above bath
   }
 }
 
 
 //checks whether the plug is in or out and updates water level accordingly
 function checkPlug(ctx){
-  if(plugIn==false && (waterChange!=0) && tapOn==false) {
+  if(plugIn==false && (waterLevel!=0) && tapOn==false) {
       decreaseWater();
     }
 
   ctx.fillStyle="#464646";
    
-  if(plugIn==true)
+  if(plugIn==true){
     ctx.fillRect(160,200,15,-5);
+  }
 
   else
     ctx.fillRect(160,195,15,-5);
@@ -187,27 +184,23 @@ function checkPlug(ctx){
 //A function which when run loads all of the images onto the canvas,
 //Draws the current water level in the bath depending on which
 //of the user buttons have been clicked.
-//At the end of the function it clears the screen to allow the next 'frame'
-//to be drawn.
+//
 function drawBoard(ctx){
     
-  loadImage(ctx,image1_src,bathX, bathY);
-  loadImage(ctx,image3_src,10,450/2+20);
-  loadImage(ctx,image4_src,bathX, manY);
-  ctx.fillStyle="#66FFFF";
-
-    ctx.clearRect(0, 0, 450, 450);
-    ctx.fillRect(bathX+18,202,310,waterChange);
+  ctx.fillStyle="#66FFFF";    //water colour
+  ctx.clearRect(bathX+20,201,305,waterHeightLimit);
+  ctx.fillRect(bathX+20,201,305,waterLevel);           //draw water
   
-
-ctx.fillStyle="#ffff00";
-      ctx.fillRect(0,450/2 + 20,450,450/2);
-
+  checkMan(ctx);
   checkTap(ctx);
   checkPlug(ctx);
-  checkMan(ctx);
+
+  loadImage(ctx,bathImage,bathX, bathY);   //load bath
+  loadImage(ctx,graphImage,10,450/2+20);    //
+  loadImage(ctx,manImage,bathX, manY);
 
 }
+
 
 
 
@@ -221,11 +214,10 @@ var main = function(){
   var c = document.getElementById("game_canvas");
   var ctx = c.getContext("2d");
   ctx.font=textHeight+"px Georgia";
-  
 
-  setInterval(function(){ drawBoard(ctx); }, 50);
-    setInterval(function(){ showerEffect(); }, 250);
-    setInterval(function(){ graphPointCreate(ctx); }, 200);
-    setInterval(function(){ drawGraphPoints(ctx); }, 50);
-  } 
+  setInterval(function(){ drawBoard(ctx); }, 100);
+  setInterval(function(){ showerEffect(ctx); }, 250);
+  setInterval(function(){ graphPointCreate(ctx); }, 200);
+
+} 
 $(document).ready(main);
