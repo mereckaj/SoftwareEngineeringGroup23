@@ -1,58 +1,58 @@
 <!DOCTYPE HTML>
 <html>
-<head>
-  <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
-  <meta name="viewport"content=" width=device-width, initial-scale=1">
-  <title> Eureka !</title>
-  <script src="jquery.js"></script>
-  <script type="application/javascript" src="eureka.js"></script>
-  <link rel="stylesheet" type="text/css" href="eureka.css">
-  <!-- Load boostrap stuff -->
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
-</head>
-<body>
-  <div class="container">
-    <ul class="nav nav-tabs">
-      <li role="presentation" class="active"><a href="eureka.html">Play</a></li>
-      <li role="presentation"><a href="learn.html">Learn</a></li>
-      <li role="presentation"><a href="about.html">About </a></li>
-      <li role="presentation"><a href="code.html">Code </a></li>
-    </ul>
+  <head>
+    <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>Eureka | Play</title>
+    <script src="jquery.js"></script>
+    <link rel="stylesheet" type="text/css" href="eureka.css"> <!-- CHANGE CSS LOCATION -->
+    <script type="application/javascript" src="eureka.js"></script> <!-- CHANGE JS LOCATION -->
+    <!-- Load boostrap stuff -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap.min.css">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/css/bootstrap-theme.min.css">
+  </head>
+  <body>
+    <nav class="navbar navbar-default">
+      <div class="container-fluid">        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#bs-example-navbar-collapse-1">
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="#">Eureka</a>
+        </div>
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+          <ul class="nav navbar-nav">
+            <!-- ADD class="active" to THIS page below -->
+            <li role="presentation"><a href="index.html">Play</a></li>
+            <li role="presentation"><a href="learn.html">Learn</a></li>
+            <li role="presentation"><a href="about.html">About </a></li>
+            <li role="presentation"><a href="code.html">Code </a></li>
+          </ul>
+        </div>
+      </div>
+    </nav>
     <div class="panel panel-default">
       <div class="panel-body">
-        <div class="game">
-          <div class="container" align="center">
-             <canvas id="game_canvas" width="450" height="450" style="border:1px solid #000000;">
+        <div class="container" align="center">
+          <canvas id="game_canvas" width="450" height="450" style="border:1px solid #000000;">
             <svg id="svg_canvas" xmlns="http://www.w3.org/2000/svg" width="200.0" height="200.0" visibility="visible">
               <image id="bath_pic" visibility="shown" xlink:href="bath.svg" x="0" y="0" height="75%" width="75%"/>
               <image id="graph_pic" visibility="shown" xlink:href="graph.svg" x="0" y="280" height="75%" width="75%"/>   
               <image id="tap_pic" visibility="shown" xlink:href="tap.svg" x="70" y="175" height="10%" width="10%"/>    
- 
-            </svg></canvas> 
-          </div>
-          
+            </svg>
+          </canvas> 
           <div id="tap_input" class="container" align="center">
             <button type="button" id="turnTap" onclick="tapPressed()" >Tap </button>
-          </div>
-          <div id="sing_input" class="container" align="center">
-            <button type="button" id="isSinging">Sing</button>
-          </div>
-          <div id="plug_input" class="container" align="center">
+            <button type="button" id="isSinging" disabled="disabled">Sing</button>
             <button type="button" id="pullPlug" onclick="plugPressed()">Plug</button>
-          </div>
-          <div id="man_input" class="container" align="center">
             <button type="button" id="inMan" onclick="manButtonPressed()">Man</button>
           </div>
-          
         </div>
       </div>
     </div>
-  </div>
-  <!-- Boostrap script of some sort -->
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
-</body>
+    <!-- Boostrap script of some sort -->
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.2/js/bootstrap.min.js"></script>
+  </body>
 </html>
-            
-
-            

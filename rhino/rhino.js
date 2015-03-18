@@ -1,3 +1,20 @@
+axisColour = "black";
+gridColour = "black";
+guessTextColour = "black";
+introTextColour = "black";
+boardColour = "#00ffff";
+textHeight = 18;
+typefaceAndFont = textHeight+ "px sans-serif";
+introLengt = 15000; //15 sec
+
+// Images for the image board
+image1_src = 'gallery/grid1.png';
+image2_src = 'gallery/grid2.png';
+image3_src = 'gallery/grid3.png';
+image4_src = 'gallery/grid4.png';
+rhino_src_black = 'gallery/rhino_black.png';
+rhino_src_white = 'gallery/rhino_white.png';
+
 var xCoord;
 var yCoord;
 var xMax = 8;
@@ -7,21 +24,8 @@ var bw = yMax * 50;
 var p = 25;
 var rhino;
 var grid;
-axisColour = "black";
-gridColour = "black";
-boardColour = "#233777";
-textHeight = 16;
 var useImagesOverGrid = false;
 var totalGuesses = 1;
-introLengt = 15000;//5 sec
-// Images for the image board
-image1_src = 'grid1.png';
-image2_src = 'grid2.png';
-image3_src = 'grid3.png';
-image4_src = 'grid4.png';
-rhino_src_black = 'https://mereckaj.github.io/rhino_black.png';
-rhino_src_white = 'https://mereckaj.github.io/rhino_white.png';
-
 var special = ['zeroth','first', 'second', 'third', 'fourth', 'fifth', 'sixth', 'seventh', 'eighth', 'ninth', 'tenth', 'eleventh', 'twelvth', 'thirteenth', 'fourteenth', 'fifteenth', 'sixteenth', 'seventeenth', 'eighteenth', 'nineteenth'];
 var deca = ['twent', 'thirt', 'fourt', 'fift', 'sixt', 'sevent', 'eight', 'ninet'];
 
@@ -72,6 +76,7 @@ function City(){
 
 //Draws the actual grid onto the board
 function drawGrid(context){
+  context.beginPath()
   for (var x = 0; x <= bw; x += 50) {
     context.moveTo(0.5 + x + p, p);
     context.lineTo(0.5 + x + p, bh + p);
@@ -82,6 +87,7 @@ function drawGrid(context){
   }
   context.strokeStyle = gridColour;
   context.stroke();
+  context.closePath();
 }
 
 // Draws the coloured block that is used as a background for the board
@@ -217,7 +223,7 @@ function delayedWinningMessage(time,ctx) {
       drawBoard(ctx);
       totalGuesses=1;
       rhino.move();
-      document.getElementById("coords_selected").innerHTML = "What is your 1st guess ? ("+xCoord+","+yCoord+")";
+      document.getElementById("coords_selected").innerHTML = "What is your first guess ? ("+xCoord+","+yCoord+")";
     }
   }, time); 
 }
@@ -239,7 +245,8 @@ function addDistnaceToGrid(ctx,dst,x,y){
   ctx.fill();
   ctx.closePath();
   //Add the distance in the middle of that circle
-  ctx.fillStyle = "white";
+  ctx.font = typefaceAndFont;
+  ctx.fillStyle = guessTextColour;
   ctx.fillText(dst,x-(textWidth/2),y+(textHeight/2)-2);
 }
 
@@ -248,6 +255,7 @@ function update(){
   getNewCoords();
   document.getElementById("coords_selected").innerHTML = "What is your "+getGuessString(totalGuesses)+ " guess ? ("+xCoord+","+yCoord+")";
 }
+// This function is copied from some thread on stack overflow.
 function getGuessString(n){
   if (n < 20) return special[n];
   if (n%10 === 0) return deca[Math.floor(n/10)-2] + 'ieth';
@@ -283,16 +291,19 @@ function drawIntro(ctx){
   drawGridBoard(ctx);
   setTimeout(function() {
     ctx.textAlign='center';
-    ctx.fillStyle='white';
+    ctx.fillStyle=introTextColour;
     ctx.fillText("A Rhino is lost in New York.",c.width/2,c.height/2-textHeight);
   }, 0000);
   setTimeout(function() {
+    ctx.fillStyle=introTextColour;
     ctx.fillText("Can you find her?",c.width/2,c.height/2);
   }, 2000);
   setTimeout(function() {
+    ctx.fillStyle=introTextColour;
     ctx.fillText("You select your co-ordinates.",c.width/2,c.height/2+(textHeight));
   }, 4000);
   setTimeout(function() {
+    ctx.fillStyle=introTextColour;
     ctx.fillText("A helicopter pilot will tell you",c.width/2,c.height/2+(textHeight*2));
     ctx.fillText("how far you have to walk.",c.width/2,c.height/2+(textHeight*3));
   }, 6000);
@@ -311,7 +322,7 @@ var main = function(){
   var ctx = c.getContext("2d");
 
   //Set up the text format, text size is variable
-  ctx.font=textHeight+"px Georgia";
+  ctx.font=typefaceAndFont;
 
   //Event listener for Guess button
   var guessButton = document.getElementById('makeGuess');
@@ -339,6 +350,5 @@ var main = function(){
   //Create a new Rhino and City objects
   rhino = new Rhino();
   grid = new City();
-
 }
 $(document).ready(main);

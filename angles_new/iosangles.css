@@ -1,211 +1,129 @@
 svg#snookerTable {
 	background-color: white;
-	}
-
+}
 .border {
 	fill: brown;
-	}
-
+}
 #board {
 	fill: green;
-	}
-
+}
 .marking, .markingdot {
 	opacity: 0.8;
-	}
-
+}
 .marking {
 	stroke: white;
 	stroke-width: 2;
 	fill: none;
-	}
-
+}
 .markingdot {
 	stroke: none;
 	fill: white;
-	}
-
+}
 .pocket {
 	fill: black;
-	}
-
-
+}
 #ball {
 	fill: white;
-	}
-
-	
-button {
-	position: absolute;
-
 }
-
-form input text {
-	font-size: 120%;
-}
-
-input#friction_range {
-	width: 80px;
-}
-
-input#restitution_range {
-	width: 80px;
-}
-
 svg#flipSnookerTable {
 	background-color: White;
-	}
-
+}
 .flipTv {
 	background-color: DarkSlateGrey;
-	}
-
+}
 .flipBorder {
 	fill: White;
-	}
-
+}
 #flipBoard {
 	fill: Grey;
-	}
-
+}
 .flipPocket {
 	fill: Grey;
-	}
-
+}
 #flipBall {
 	fill: White;
-	}
-
+}
 body {
 	background-color: Black;
 	margin: 0px;
-	}
-
+}
 h1 {
 	float: left;
 	display: block;
 	padding: 0.4em;
 	margin:  0.25em;
 	border: 4px dotted Green;
-	}
-
+}
 div#appScreenArea {
 	width: 320px;
 	height: 460px;
-	}
-
+}
 div.appPage {
 	width: 320px;
 	height: 395px;
 	font-family: "Arial Rounded MT Bold", sans-serif;
 	line-height: 110%;
 	background-color: White;
-	}
-
-div.appPage p, li {
-	font-size:75%;
+}
+div.appPage p{
+	font-size:5%;
 	margin: 0px;
 	padding-left: 0.5em;
 	padding-right: 0.5em;
 	padding-top: 0.5em;
-	}
-
+}
 div #navigation {
 	width: 320px;
 	height: 65px;
 	text-align:center;
-	}
-
-
+}
 .illustration {
 	margin: 0.5em;
 	display: block;
 	float: right;
-	}
-
+}
 #splashscreen img{
     margin:0 auto;
 }
-
-/* #splashscreen{
-    position:absolute;
-    top:0;
-    left:0;
-    height:100%;
-    width:100%;
-    background-color:#252525;
-    background-repeat:no-repeat;
-    text-align:center;
-} */
-
-
-
-
-button {
-	font-family: Helvetica ;
-	font-weight: bold ;
-	padding: 0.5em; 
-	border: 2px solid grey ;
-	-moz-border-radius: 8px ;
-	-webkit-border-radius: 8px ;
-	margin-top: 0.5em;
-	margin-bottom: 0.5em;
-	background-color: white ;
-	}
-
-button#takeShot {
-	float: left;
-	}
-
 svg#angleDiagram {
 	background-color: green;
 	display:block;
 	float: right;
 	margin: 0.25em;
-	}
-
+}
 .constructionLine {
 	fill:none;
 	stroke:white;
 	stroke-width:2;
 	stroke-dasharray:2, 2;
-	}
-
+}
 .vectorLine {
 	fill:white;
 	stroke:white;
 	stroke-width:2;
-	}
-
+}
 .diagramText {
 	font-size:75%;
 	text-align:center;
 	text-anchor:middle;
 	fill:white;
 	font-family:Comic Sans MS;
-	}
-
-div.setting {
-word-spacing:40px;
-	float: left;
-	text-align:left;
-	align: left;
-	}
-
+}
+.settings{
+    width: 200px;
+}
 #backDrop {
 	fill: DarkSlateGrey;
-	}
+}
 #sliderFrame {
 	fill: LightSlateGrey;
-	}
+}
 #handle {
 	fill: white;
-	}
-
+}
 #name {
 	fill: white;
-	}
-
+}
 #value {
 	fill: white;
-	}
+}
