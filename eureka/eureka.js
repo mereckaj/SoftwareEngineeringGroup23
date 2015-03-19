@@ -15,7 +15,7 @@ var waterHeightLimit=-76;
 
 // Images used.
 bathImage = "WideBath.png";
-graphImage = "graph2.png";
+graphImage = "graph3.png";
 manImage = "man2.png";
 
 //Function which controls the TapOn boolean.
