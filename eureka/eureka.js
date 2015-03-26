@@ -12,9 +12,11 @@ textHeight = 16;
 var waterLevel = 0;
 var showerX = bathX+58;
 var waterHeightLimit=-76;
+var pause = false;
+
 
 // Images used.
-bathImage = "WideBath.png";
+bathImage = "bath.png";
 graphImage = "graph3.png";
 manImage = "man2.png";
 
@@ -87,7 +89,7 @@ function loadImage(ctx,src,x,y){
 //A function which is called periodically, and with each call 
 //makes a new point on the graph in respect to the current water level.
 function graphPointCreate(ctx){
-
+if(pause==false){
   if(graphStart==false){
   }
 
@@ -100,10 +102,11 @@ function graphPointCreate(ctx){
     
     if(xPos>400){
       noOfGraphpoints=0;
-      ctx.clearRect(45,405,450,waterHeightLimit*2);
+      ctx.clearRect(45,410,450,waterHeightLimit*2);
     }
 
   }
+}
 };
 
 
@@ -127,7 +130,7 @@ function decreaseWater(){
 //Decreases the water level as man exits the bath.
 function checkMan(ctx){
 
-    if(manY<bathY)
+    if(manY<bathY+3)
       ctx.clearRect(450/2, 120,200,-200); //clear area above bath
 
     if(manIn==true && manY< bathY)   //move man down if button pressed
@@ -136,7 +139,7 @@ function checkMan(ctx){
     if(manIn==false && manY!= -245)   //move man up otherwise
       manY=manY-4;
 
-    if(manY+55>waterLevel && manY<bathY && manIn == true){   //raise water if man getting into bath
+    if(manY+55>waterLevel && manY<bathY && manIn == true && waterLevel>0){   //raise water if man getting into bath
       increaseWater();
     }
 
@@ -186,7 +189,7 @@ function checkPlug(ctx){
 //of the user buttons have been clicked.
 //
 function drawBoard(ctx){
-    
+    if(pause==false){
   ctx.fillStyle="#66FFFF";    //water colour
   ctx.clearRect(bathX+20,201,305,waterHeightLimit);
   ctx.fillRect(bathX+20,201,305,waterLevel);           //draw water
@@ -198,9 +201,21 @@ function drawBoard(ctx){
   loadImage(ctx,bathImage,bathX, bathY);   //load bath
   loadImage(ctx,graphImage,10,450/2+20);    //
   loadImage(ctx,manImage,bathX, manY);
+}
 
 }
 
+
+$(window).keypress(function(e) {
+  if (e.keyCode == 0 || e.keyCode == 112 && pause==false) {
+    pause=true;
+    console.log("p Pressed");
+  }
+
+   else if (e.keyCode == 0 || e.keyCode == 112 && pause==true) {
+    pause=false;
+  }
+});
 
 
 
@@ -215,9 +230,11 @@ var main = function(){
   var ctx = c.getContext("2d");
   ctx.font=textHeight+"px Georgia";
 
+
   setInterval(function(){ drawBoard(ctx); }, 100);
   setInterval(function(){ showerEffect(ctx); }, 250);
   setInterval(function(){ graphPointCreate(ctx); }, 200);
+
 
 } 
 $(document).ready(main);
