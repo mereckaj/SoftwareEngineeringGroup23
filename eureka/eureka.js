@@ -139,7 +139,7 @@ function checkMan(ctx){
     if(manIn==false && manY!= -245)   //move man up otherwise
       manY=manY-4;
 
-    if(manY+55>waterLevel && manY<bathY && manIn == true && waterLevel>0){   //raise water if man getting into bath
+    if(manY+55>waterLevel && manY<bathY && manIn == true && waterLevel<0){   //raise water if man getting into bath
       increaseWater();
     }
 
