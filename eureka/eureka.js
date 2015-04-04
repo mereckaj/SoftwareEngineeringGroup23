@@ -13,12 +13,18 @@ var waterLevel = 0;
 var showerX = bathX+58;
 var waterHeightLimit=-76;
 var pause = false;
+var musicNote=true;
+var musicCount = 0;
+var musicOn=false;
+var switchMusicNotes = false;
 
 
 // Images used.
 bathImage = "bath.png";
 graphImage = "graph3.png";
 manImage = "man2.png";
+notesOne = "NotesOne.png";
+notesTwo = "NotesTwo.png";
 
 //Function which controls the TapOn boolean.
 //Activated when the 'Tap' Button is pressed.
@@ -183,6 +189,40 @@ function checkPlug(ctx){
 }
 
 
+//A function which draws music notes as the man sings.
+// Switches between two music notes images periodically.
+
+function checkMusicNote(ctx){
+ 
+  if(musicNote==true)
+    loadImage(ctx,notesOne,450/3-20, 30);  
+
+ else
+   loadImage(ctx,notesTwo,450/3-20, 30);   
+
+  musicCount++;
+
+  if(musicCount%15==0){
+
+    switchMusicNotes = true;
+    if(musicNote==true)
+      musicNote=false;
+
+    else
+      musicNote=true;
+  }
+
+   if(musicCount>60){
+    musicOn=false;
+
+    musicCount=0;
+  }
+ 
+
+}
+
+
+
 
 //A function which when run loads all of the images onto the canvas,
 //Draws the current water level in the bath depending on which
@@ -201,7 +241,17 @@ function drawBoard(ctx){
   loadImage(ctx,bathImage,bathX, bathY);   //load bath
   loadImage(ctx,graphImage,10,450/2+20);    //
   loadImage(ctx,manImage,bathX, manY);
+
+  if(musicOn==true)
+    checkMusicNote(ctx);
+
+
+  if(switchMusicNotes==true || musicOn==false){
+     ctx.clearRect(450/3-20, 30, 100,71);     //clear area of music notes between changes and after music stops
+    switchMusicNotes=false;
+  }
 }
+
 
 }
 
@@ -220,9 +270,15 @@ $(window).keypress(function(e) {
 function play(){
 	if(manIn==true && plugIn==true && waterLevel!=0 && tapOn==false){
 		var audio=document.getElementById("audio");
+
+    musicOn=true;
 		audio.play();
 	}
+
+
 }
+
+
 
 
 
@@ -240,6 +296,7 @@ var main = function(){
   setInterval(function(){ drawBoard(ctx); }, 100);
   setInterval(function(){ showerEffect(ctx); }, 250);
   setInterval(function(){ graphPointCreate(ctx); }, 200);
+
 
 
 } 
