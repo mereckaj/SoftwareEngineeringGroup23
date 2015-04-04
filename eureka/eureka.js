@@ -217,6 +217,12 @@ $(window).keypress(function(e) {
   }
 });
 
+function play(){
+	if(manIn==true && plugIn==true && waterLevel!=0 && tapOn==false){
+		var audio=document.getElementById("audio");
+		audio.play();
+	}
+}
 
 
 
