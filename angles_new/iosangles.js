@@ -1,3 +1,7 @@
+var defaultFriction = 0.98;
+var coefficientOfFriction = defaultFriction;
+var defaultRestitution = 0.9;
+var coefficientOfRestitution = defaultRestitution;
 var bounce = 0.9;
 var ballNudge = 80;
 var shotButton;
@@ -5,6 +9,7 @@ var tries;
 var ball;
 var board;
 var pockets;
+var stoppedSpeed = 0.1;
 
 function Ball(elt) {
 	var ball = this;
@@ -37,6 +42,7 @@ function Ball(elt) {
 }
 
 function main() {
+	setDefaultValues();
 	ball = new Ball(document.getElementById('ball'));
 	ball.move(
 		(2*Math.random() - 1) * ballNudge,
@@ -71,6 +77,8 @@ function main() {
 addEventListener('load', function(){ try { main() } catch(e) { alert(e.msg); } }, false);
 
 function takeShot(ev) {
+	console.log("res:"+coefficientOfRestitution);
+	console.log("fric:"+coefficientOfFriction);
 	// var deg = getNumber('Angle? (degrees, 0 is north)');
 	var userInput;
 	var deg 
@@ -113,7 +121,6 @@ function takeShot(ev) {
 	ball.v.x = power * Math.sin(rad);
 	ball.v.y = -power * Math.cos(rad);
 	shotButton.disabled = true;
-
 	frame(ball);
 }
 
@@ -215,15 +222,14 @@ function checkPocket(ball)
 }
 
 function friction(v) {
-	var res = {vx: 0, vy: 0};
 	var speed = norm(v);
 
-	if(speed <= 0.05)
+	if(speed <= stoppedSpeed)
 		return {x: 0, y: 0};
 	else
-		speed *= 0.99;
-
-	return setlength(v, speed);
+		speed *= coefficientOfFriction;
+	;
+	return setlength(v, speed);;
 }
 
 function setlength(v, s) {
@@ -245,7 +251,16 @@ function getNumber(text) {
 
 	return res;
 }
+function setDefaultValues() { 
+	document.getElementById('friction_text').value=defaultFriction; 
+	document.getElementById('restitution_text').value=defaultRestitution; 
+	syncValue('friction_range','friction_text'); 
+	syncValue('restitution_range','restitution_text');
+}
 
+function syncValue(input1ID, input2ID) { 
+	document.getElementById(input1ID).value=document.getElementById(input2ID).value;
+}
 function setFrictionValueFromRange() {
 	coefficientOfFriction = 1 * document.getElementById('friction_range').value;
 	document.getElementById('friction_text').value = coefficientOfFriction;

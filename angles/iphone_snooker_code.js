@@ -182,11 +182,12 @@ function checkPocket(ball)
 function friction(v) {
 	var speed = norm(v);
 
-	if(speed <= stoppedSpeed)
+	if(speed <= stoppedSpeed){
 		return {x: 0, y: 0};
-	else
+	}
+	else{
 		speed *= coefficientOfFriction;
-	;
+	}
 	return setlength(v, speed);
 }
 
