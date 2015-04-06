@@ -267,6 +267,9 @@ $(window).keypress(function(e) {
   }
 });
 
+/*
+* Plays the audio, remove this code if you don't want any sounds
+*/
 function play(){
 	if(manIn==true && plugIn==true && waterLevel!=0 && tapOn==false){
 		var audio=document.getElementById("audio");
