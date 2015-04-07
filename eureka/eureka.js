@@ -66,6 +66,20 @@ function  manButtonPressed(){
   }
 }
 
+
+
+//Function which pauses and resumes the game.
+//Activated when the 'pause' Button is pressed.
+function  pausePressed(){
+  
+  if(pause===false){
+    pause=true;
+  }
+  else{
+    pause=false;
+  }
+}
+
 //A Function which gives the water coming from the shower a swaying effect.
 
 function showerEffect(ctx){
@@ -256,16 +270,6 @@ function drawBoard(ctx){
 }
 
 
-$(window).keypress(function(e) {
-  if (e.keyCode == 0 || e.keyCode == 112 && pause==false) {
-    pause=true;
-    console.log("p Pressed");
-  }
-
-   else if (e.keyCode == 0 || e.keyCode == 112 && pause==true) {
-    pause=false;
-  }
-});
 
 /*
 * Plays the audio, remove this code if you don't want any sounds
